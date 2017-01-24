@@ -4,8 +4,6 @@ from neomodel.relationship_manager import RelationshipTo, RelationshipFrom
 #EDGES
 class AT_CHROMOSOME(StructuredRel):
     fusion_point = IntegerProperty()
-
-class AT_EXON(StructuredRel):
     fusion_partner = StringProperty()
 
 class HAD(StructuredRel):
@@ -53,7 +51,7 @@ class Exon(StructuredNode):
     #
     in_gene = RelationshipTo('Gene',"IN_GENE")
     #
-    fromFusionToExon = RelationshipFrom('Fusion', "AT_EXON", model=AT_EXON)
+    fromFusionToExon = RelationshipFrom('Fusion', "AT_EXON")
     
 class Fusion(StructuredNode):
     fusion_id = IntegerProperty()
@@ -66,7 +64,7 @@ class Fusion(StructuredNode):
     fusion_sequence = StringProperty()
     #
     at_chromosome = RelationshipTo('Chromosome', "AT_CHROMOSOME", model=AT_CHROMOSOME)
-    at_exon = RelationshipTo('Exon', "AT_EXON", model=AT_EXON)
+    at_exon = RelationshipTo('Exon', "AT_EXON")
     with_trans_couple = RelationshipTo('Couple', "WITH_TRANS_COUPLE")
     with_gene = RelationshipTo('Gene',"WITH", model=WITH)
     #
@@ -82,6 +80,7 @@ class Gene(StructuredNode):
     #fromFusion = RelationshipFrom('Fusion',"WITH", model=WITH)
     fromExonToGene = RelationshipFrom('Exon',"IN_GENE")
     fromChromosomeToGene = RelationshipFrom('Chromosome',"OF_GENE")
+    fromFusionToGene = RelationshipFrom('Fusion','WITH', model=WITH)
     
 class Protein(StructuredNode):
     protein = StringProperty()

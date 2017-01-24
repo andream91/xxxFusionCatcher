@@ -28,4 +28,5 @@ urlpatterns = [
     url(r'^transcript/single/(.+)/(.+)/', views.search_for_single_transcript, name='search_for_single_transcript'),
     url(r'^transcript/pair/(.+)/(.+)/(.+)/', views.search_for_pair_transcript, name='search_for_pair_transcript'),
     url(r'^fusion_information/(.+)/(.+)/(.+)/(.+)/(.+)/', views.search_for_fusion_information, name='search_for_fusion_information'),
+    url(r'^virus/(.+)/(.+)/', views.search_viruses, name='search_viruses'),
 ]
