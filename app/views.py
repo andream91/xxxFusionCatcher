@@ -1,4 +1,4 @@
-from app.models import CellLine, Chromosome, Gene, Fusion
+from app.models import CellLine, Chromosome, Gene, Fusion, Exon, Transcript
 import json
 
 # Create your views here.
@@ -64,17 +64,17 @@ def search_for_chromosome(request,c_line,chromos,start_point,end_point):
     if c_line == "ALL" and chromos != "":
         c = Chromosome.nodes.get(chromosome = chromos)
         for fusion in c.fromFusiontoChromosome:
-            if fusion.at_chromosome.match(fusion_point__gte=start_point) and fusion.at_chromosome.match(fusion_point__lte=end_point):
+            if fusion.fusion_point_1 >= start_point and fusion.fusion_point_2 <= end_point:
                 fusions.append(fusion)
     #se ho specificato solo la linea cellulare, cerco tutte le fusioni che avvengono in uqella linea cellulare nel determinato intervallo
     elif c_line != "" and chromos == "":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            if fusion.at_chromosome.match(fusion_point__gte=start_point) and fusion.at_chromosome.match(fusion_point__lte=end_point):
+            if fusion.fusion_point_1 >= start_point and fusion.fusion_point_2 <= end_point:
                 fusions.append(fusion)
     #se ho sia linea cellulare che cromosoma specificati, cerco tutte le fusioni nella linea cellulare che coinvolgono il cromosoma
     elif c_line != "" and chromos != "":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            if fusion.at_chromosome.match(fusion_point__gte=start_point) and fusion.at_chromosome.match(fusion_point__lte=end_point):
+            if fusion.fusion_point_1 >= int(start_point) and fusion.fusion_point_2 <= int(end_point):
                 if fusion.at_chromosome.filter(chromosome__exact=chromos):
                     fusions.append(fusion)
     
@@ -84,7 +84,7 @@ def search_for_chromosome(request,c_line,chromos,start_point,end_point):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_single_gene(request,c_line,gene_one):
+def search_for_gene(request,c_line,gene_one,gene_two):
     response = {}
     header = ["Cell line",
         "Gene pair symbols",
@@ -106,7 +106,7 @@ def search_for_single_gene(request,c_line,gene_one):
     fusions = []
     
     #se ho specificato il gene ma non la linea cellulare, mostro tutte le fusioni che coinvolgono il gene
-    if c_line == "ALL" and gene_one != "":
+    if c_line == "ALL" and gene_one != "" and gene_two == "":
         if "ENSG" in gene_one:
             g = Gene.nodes.get(gene_id = gene_one)
             if g.had:
@@ -123,45 +123,7 @@ def search_for_single_gene(request,c_line,gene_one):
             if g.fromFusionToGene:
                 for fusion in g.fromFusionToGene:
                     fusions.append(fusion)
-        
-    #se ho specificato la linea cellulare ma non il gene, mostro tutte le fusioni per quella linea cellulare (ANALOGO A SEARCH FOR CELL_LINE)
-    elif c_line != "" and gene_one == "":
-        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            fusions.append(fusion)     
-    #se ho specificato sia la linea cellulare che il gene, cerco tutte le fusioni che coinvolgono quel gene nella linea cellulare
-    elif c_line != "" and gene_one != "":
-        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            if fusion.fromGeneToFusion.filter(symbol__exact=gene_one) or fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) or fusion.with_gene.filter(symbol__exact=gene_one) or fusion.with_gene.filter(gene_id__exact=gene_one):
-                fusions.append(fusion)
-            
-    rows = build_rows(fusions,header)
-    print(rows)
-
-    response['rows'] = {"header": header, "items": rows}
-    return HttpResponse(json.dumps(response))
-
-def search_for_pair_gene(request,c_line,gene_one,gene_two):
-    response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
-    
-    # recupero fusioni nella linea cellulare
-    fusions = []
-    #se ho specificato i geni ma non la linea cellulare, mostro tutte le fusioni che coinvolgono la coppia
-    if c_line == "ALL" and gene_one != "" and gene_two != "":
+    elif c_line == "ALL" and gene_one != "" and gene_two != "":
         if "ENSG" in gene_one and "ENSG" in gene_two:
             g = Gene.nodes.get(gene_id = gene_one)
             if g.had:
@@ -209,24 +171,30 @@ def search_for_pair_gene(request,c_line,gene_one,gene_two):
             if g.had:
                 for fusion in g.had: 
                     if fusion.with_gene.all()[0].symbol == gene_one:
-                        fusions.append(fusion)
-    #se ho specificato la linea cellulare ma non i geni, mostro tutte le fusioni per quella linea cellulare (ANALOGO A SEARCH FOR CELL_LINE)
-    elif c_line != "" and gene_one == "" and gene_two == "":
+                        fusions.append(fusion)    
+    #se ho specificato la linea cellulare ma non il gene, mostro tutte le fusioni per quella linea cellulare (ANALOGO A SEARCH FOR CELL_LINE)
+    elif c_line != "ALL" and gene_one == "" and gene_two == "":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             fusions.append(fusion)     
-    #se ho specificato sia la linea cellulare che le coppie, cerco tutte le fusioni che coinvolgono quella coppia nella linea cellulare
-    else:
+    #se ho specificato sia la linea cellulare che il gene, cerco tutte le fusioni che coinvolgono quel gene nella linea cellulare
+    elif c_line != "ALL" and gene_one != "" and gene_two == "":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion.fromGeneToFusion.filter(symbol__exact=gene_one) or fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) or fusion.with_gene.filter(symbol__exact=gene_one) or fusion.with_gene.filter(gene_id__exact=gene_one):
+                fusions.append(fusion)
+    elif c_line != "ALL" and gene_one != "" and gene_two != "":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             if (fusion.fromGeneToFusion.filter(symbol__exact=gene_one) and fusion.with_gene.filter(symbol__exact=gene_two)) or (fusion.fromGeneToFusion.filter(symbol__exact=gene_two) and fusion.with_gene.filter(symbol__exact=gene_one)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) and fusion.with_gene.filter(gene_id__exact=gene_two)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_two) and fusion.with_gene.filter(gene_id__exact=gene_one)):
                 fusions.append(fusion)
-
+            
     rows = build_rows(fusions,header)
     print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_single_exon(request,c_line,exon_one):
+
+
+def search_for_exon(request,c_line,exon_one,exon_two):
     response = {}
     header = ["Cell line",
         "Gene pair symbols",
@@ -246,70 +214,32 @@ def search_for_single_exon(request,c_line,exon_one):
     
     # recupero fusioni nella linea cellulare
     fusions = []
-    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-        if fusion.at_exon.filter(exon__exact=exon_one):
+    
+    #cell_line all, primo esone si, secondo esone no, tutte le fusioni che coinvolgono questo esone
+    if c_line == "ALL" and exon_one!="" and exon_two == "":
+        e = Exon.nodes.get(exon = exon_one)
+        for fusion in e.fromFusionToExon:
             fusions.append(fusion)
-
-    rows = build_rows(fusions,header)
-    print(rows)
-
-    response['rows'] = {"header": header, "items": rows}
-    return HttpResponse(json.dumps(response))
-
-def search_for_pair_exon(request,c_line,exon_one,exon_two):
-    response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
-    
-    # recupero fusioni nella linea cellulare
-    fusions = []
-    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-        if fusion.at_exon.filter(exon__exact=exon_one) and fusion.at_exon.filter(exon__exact=exon_two):
-            fusions.append(fusion)
-
-    rows = build_rows(fusions,header)
-    print(rows)
-
-    response['rows'] = {"header": header, "items": rows}
-    return HttpResponse(json.dumps(response))
-
-def search_for_single_transcript(request,c_line,transcript_one):
-    response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
-    
-    # recupero fusioni nella linea cellulare
-    fusions = []
-    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-        for couple in fusion.with_trans_couple:
-            if couple.fromTranscriptToCouple.filter(transcript__exact=transcript_one) or couple.with_other_transcript.filter(transcript__exact=transcript_one):
+    #cell_line all, primo esone si, secondo esone si (011), tutte le fusioni che convolgono la coppia di esoni
+    elif c_line == "ALL" and exon_one!="" and exon_two!="":
+        e = Exon.nodes.get(exon = exon_one)
+        for fusion in e.fromFusionToExon:
+            if fusion.at_exon.filter(exon__exact=exon_two):
                 fusions.append(fusion)
+    #cell_line si, primo esone no, secondo esone no, ANALOGO A SEARCH FOR CELL_LINE
+    elif c_line!="ALL" and exon_one=="" and exon_two=="":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            fusions.append(fusion)     
+    #cell_line si, primo esone si, secondo esone no 
+    elif c_line != "ALL" and exon_one != "" and exon_two == "":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion.at_exon.filter(exon__exact=exon_one):
+                fusions.append(fusion)
+    #cell_line si, primo esone si, secondo esone si 
+    elif c_line != "ALL" and exon_one!="" and exon_two != "":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion.at_exon.filter(exon__exact=exon_one) and fusion.at_exon.filter(exon__exact=exon_two):
+                    fusions.append(fusion)
 
     rows = build_rows(fusions,header)
     print(rows)
@@ -317,7 +247,7 @@ def search_for_single_transcript(request,c_line,transcript_one):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_pair_transcript(request,c_line,transcript_one,transcript_two):
+def search_for_transcript(request,c_line,transcript_one,transcript_two):
     response = {}
     header = ["Cell line",
         "Gene pair symbols",
@@ -337,10 +267,35 @@ def search_for_pair_transcript(request,c_line,transcript_one,transcript_two):
     
     # recupero fusioni nella linea cellulare
     fusions = []
-    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-        for couple in fusion.with_trans_couple:
-            if (couple.fromTranscriptToCouple.filter(transcript__exact=transcript_one) and couple.with_other_transcript.filter(transcript__exact=transcript_two)) or (couple.fromTranscriptToCouple.filter(transcript__exact=transcript_two) and couple.with_other_transcript.filter(transcript__exact=transcript_one)):
+    
+    #linea cellulare non specificata, un trascritto specificato
+    if c_line=="ALL" and transcript_one!="" and transcript_two=="":
+        for couple in Transcript.nodes.get(transcript = transcript_one).fromCoupleToTranscript:
+            for fusion in couple.fromFusionToCouple:
                 fusions.append(fusion)
+    #linea cellulare non specificata, coppia di trascritti specificata
+    elif c_line=="ALL" and transcript_one!="" and transcript_two!="":
+        for couple in Transcript.nodes.get(transcript = transcript_one).fromCoupleToTranscript:
+            if couple.with_other_transcript.filter(transcript__exact=transcript_two) or couple.fromTranscriptToCouple.filter(transcript__exact=transcript_two):
+                for fusion in couple.fromFusionToCouple:
+                    fusions.append(fusion)
+        for couple in Transcript.nodes.get(transcript = transcript_two).fromCoupleToTranscript:
+            if couple.with_other_transcript.filter(transcript__exact=transcript_one) or couple.fromTranscriptToCouple.filter(transcript__exact=transcript_one):
+                for fusion in couple.fromFusionToCouple:
+                    fusions.append(fusion)
+    #linea cellulare specificata, un trascritto specificato:
+    elif c_line!="ALL" and transcript_one!="" and transcript_two=="trolo":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            for couple in fusion.with_trans_couple:
+                if couple.fromTranscriptToCouple.filter(transcript__exact=transcript_one) or couple.with_other_transcript.filter(transcript__exact=transcript_one):
+                    fusions.append(fusion)
+    #linea cellulare specificata, coppia di trascritti specificata
+    elif c_line!="ALL" and transcript_one!="" and transcript_two!="":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            for couple in fusion.with_trans_couple:
+                if (couple.fromTranscriptToCouple.filter(transcript__exact=transcript_one) and couple.with_other_transcript.filter(transcript__exact=transcript_two)) or (couple.fromTranscriptToCouple.filter(transcript__exact=transcript_two) and couple.with_other_transcript.filter(transcript__exact=transcript_one)):
+                    fusions.append(fusion)
+        
 
     rows = build_rows(fusions,header)
     print(rows)
@@ -396,35 +351,10 @@ def build_rows(fusions, header):
         predicted_effect_2 = myfusion.with_gene.relationship(gene2).predicted_effect
 
         #recupero cromosomi 
-        chromosome1 = myfusion.at_chromosome.match(fusion_partner__exact="5end").all()[0]
-        chromosome2 = myfusion.at_chromosome.match(fusion_partner__exact="3end").all()[0]
-
-        fusion_point_1 = myfusion.at_chromosome.relationship(chromosome1).fusion_point
-        fusion_point_2 = myfusion.at_chromosome.relationship(chromosome2).fusion_point
-        #fusion_partner_1 = ''
-       # fusion_partner_2 = ''
-       
-        print("5end:"+str(chromosome1)+":"+str(fusion_point_1))
-        print("3end:"+str(chromosome2)+":"+str(fusion_point_2))
-        #for chrom in myfusion.at_chromosome:
-            #print(myfusion.at_chromosome.relationship(chrom).fusion_partner)
-            
-            
-        #        if chrom.of_gene.filter(symbol__exact=gene1.symbol):
-
-                    #print(myfusion.at_chromosome.relationship(chrom).fusion_partner)
-        #            fusion_point_1 = myfusion.at_chromosome.relationship(myfusion.at_chromosome.all()[0]).fusion_point
-                    #print(myfusion.at_chromosome.relationship(chrom).fusion_partner)
-                    #print(fusion_point_1)
-         #           chromosome1 = chrom
-           
-         #       if chrom.of_gene.filter(symbol__exact=gene2.symbol):
-                    #print(myfusion.at_chromosome.relationship(chrom).fusion_partner)7
-        #       if myfusion.at_chromosome.match(fusion_partner__exact="3end"):
-         #           fusion_point_2 = myfusion.at_chromosome.relationship(chrom).fusion_point
-                    #print(myfusion.at_chromosome.relationship(chrom).fusion_partner)
-                        #rint(fusion_point_2)
-        #            chromosome2 = chrom
+        chromosome1 = myfusion.at_chromosome.match(fusion_partner__exact="5'end").all()[0]
+        chromosome2 = myfusion.at_chromosome.match(fusion_partner__exact="3'end").all()[0]
+        fusion_point_1 = myfusion.fusion_point_1
+        fusion_point_2 = myfusion.fusion_point_2
 
         #recupero esoni        
         exon1 = []

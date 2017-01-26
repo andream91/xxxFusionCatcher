@@ -3,7 +3,6 @@ from neomodel.relationship_manager import RelationshipTo, RelationshipFrom
 
 #EDGES
 class AT_CHROMOSOME(StructuredRel):
-    fusion_point = IntegerProperty()
     fusion_partner = StringProperty()
 
 class HAD(StructuredRel):
@@ -62,6 +61,8 @@ class Fusion(StructuredNode):
     longest_anchor_found = IntegerProperty()
     fusion_finding_method = StringProperty()
     fusion_sequence = StringProperty()
+    fusion_point_1 = IntegerProperty()
+    fusion_point_2 = IntegerProperty()
     #
     at_chromosome = RelationshipTo('Chromosome', "AT_CHROMOSOME", model=AT_CHROMOSOME)
     at_exon = RelationshipTo('Exon', "AT_EXON")
