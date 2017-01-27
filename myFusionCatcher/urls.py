@@ -26,4 +26,5 @@ urlpatterns = [
     url(r'^transcript/(.+)/(.+)/(.+)/', views.search_for_transcript, name='search_for_transcript'),
     url(r'^fusion_information/(.+)/(.+)/(.+)/(.+)/(.+)/', views.search_for_fusion_information, name='search_for_fusion_information'),
     url(r'^virus/(.+)/(.+)/', views.search_viruses, name='search_viruses'),
+    url(r'^genstats/', views.generate_statistics, name='generate_statistics'),
 ]

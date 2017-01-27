@@ -1,5 +1,6 @@
 from app.models import CellLine, Chromosome, Gene, Fusion, Exon, Transcript
-import json
+import json, csv
+from neomodel import db, match
 
 # Create your views here.
 from django.http import HttpResponse
@@ -433,3 +434,56 @@ def search_viruses(request,c_line,vir):
                 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
+
+def generate_statistics(request):
+    #chromosome-fusion
+    chromosome_fusion_f =  open('chromosome_fusion.csv','w')
+    chromosome_fusion_w = csv.writer(chromosome_fusion_f)
+    chromosome_fusion_w.writerow(["Chromosome","Fusion"])
+    for chromosome in Chromosome.nodes.all():
+        #print(len(chromosome.fromFusiontoChromosome))
+        chromosome_fusion_w.writerow([chromosome.chromosome,len(chromosome.fromFusiontoChromosome)])
+    chromosome_fusion_f.close() 
+    
+    #cell line-fusion
+    cell_line_fusion_f =  open('cell_line_fusion.csv','w')
+    cell_line_fusion_w = csv.writer(cell_line_fusion_f)
+    cell_line_fusion_w.writerow(["Cell Line","Fusion"])
+    for cell_line in CellLine.nodes.all():
+        cell_line_fusion_w.writerow([cell_line.cell_line,len(cell_line.happen)])
+    cell_line_fusion_f.close()
+
+    #cell line-gene
+    cell_line_gene_f =  open('cell_line_gene.csv','w')
+    cell_line_gene_w = csv.writer(cell_line_gene_f)
+    cell_line_gene_w.writerow(["Cell Line","Gene"])
+    #for cell_line in CellLine.nodes.all():
+    #   query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[:HAPPEN]->(f:Fusion) with c, f match (g1:Gene)-[:HAD]->(f) WITH c,f,collect(DISTINCT g1) AS set1 match (f)-[:WITH]->(g2:Gene) with c,f,set1,collect(DISTINCT g2) AS set2 with set1+set2 as both unwind both as res return count(distinct res)"
+    #   results = db.cypher_query(query)
+    #   cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
+    #for cell_line in CellLine.nodes.all():
+    #    genes = []
+    #    for fusion in cell_line.happen:
+    #        if fusion.fromGeneToFusion.all()[0].symbol not in genes:
+    #                 genes.append(fusion.fromGeneToFusion.all()[0].symbol)
+    #             if fusion.with_gene.all()[0].symbol not in genes:
+    #                 genes.append(fusion.with_gene.all()[0].symbol)
+    #         cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
+    #         print("done "+cell_line.cell_line)
+    for cell_line in CellLine.nodes.all():
+        definition = dict(node_class=Gene, direction=match.OUTGOING, relation_type='*', model=None)
+        relations_traversal = match.Traversal(cell_line, Gene.__label__, definition)
+        genes = relations_traversal.all()
+        print(genes)
+        
+    cell_line_gene_f.close()
+    
+    return HttpResponse()
+        
+    
+    
+    
+    
+    
+    
+    
