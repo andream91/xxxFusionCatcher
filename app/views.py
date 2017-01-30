@@ -1,6 +1,6 @@
-from app.models import CellLine, Chromosome, Gene, Fusion, Exon, Transcript
+from app.models import CellLine, Chromosome, Gene, Exon, Transcript
 import json, csv
-from neomodel import db, match
+#from neomodel import db, match
 
 # Create your views here.
 from django.http import HttpResponse
@@ -324,11 +324,105 @@ def search_for_fusion_information(request,c_line,algorithm,fusion_description,pr
     
     # recupero fusioni nella linea cellulare
     fusions = []
-    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-        predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
-        predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
-        if (algorithm in fusion.fusion_finding_method) and (fusion_description in fusion.description) and (predicted_effect1 == predicted_effect_1) and (predicted_effect2 == predicted_effect_2):
-            fusions.append(fusion)
+    
+    #linea cellulare non specificata, predicted effect specificato (0001)
+    if c_line == "ALL" and algorithm == "ALL" and fusion_description == "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+                predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+                if predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                    fusions.append(fusion)
+    #linea cellulare non specificata, mapping algorithm non specificato, fusion description specificata, predicted effect non specificato (0010)
+    elif c_line == "ALL" and algorithm == "ALL" and fusion_description != "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                if fusion_description in fusion.description:
+                    fusions.append(fusion)
+    #linea cellulare non specificata, mapping algorithm non specificato, fusion description specificata, predicted effect specificato (0011)
+    elif c_line == "ALL" and algorithm == "ALL" and fusion_description != "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+                predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+                if fusion_description in fusion.description and predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                    fusions.append(fusion)
+    #linea cellulare non specificata, mapping algorithm specificato, fusion description non specificata, predicted effect non speficicato (0100)
+    elif c_line == "ALL" and algorithm != "ALL" and fusion_description == "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                if algorithm in fusion.fusion_finding_method:
+                    fusion.append(fusion)
+    #linea cellulare non specificata, mapping algorithm specificato, fusion description non specificata, predicted effect specificato (0101)
+    elif c_line == "ALL" and algorithm != "ALL" and fusion_description == "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+                predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+                if algorithm in fusion.fusion_finding_method and predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                    fusion.append(fusion)
+    #linea cellulare non specificata, mapping algorithm specificato, fusion description specificata, predicted effect non specificato (0110)
+    elif c_line == "ALL" and algorithm != "ALL" and fusion_description != "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                if algorithm in fusion.fusion_finding_method and fusion_description in fusion.description:
+                    fusion.append(fusion)
+    #linea cellulare non specificata, mapping algorithm specificato, fusion description specificata, predicted effect specificato (0111)
+    elif c_line == "ALL" and algorithm != "ALL" and fusion_description != "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for c_l in CellLine.nodes.all():
+            for fusion in c_l.happen:
+                predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+                predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+                if algorithm in fusion.fusion_finding_method and fusion_description in fusion.description and predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                    fusion.append(fusion)
+    #linea cellulare specificata, il resto non specificato (1000) tutte le fusioni di una linea cellulare (analogo a search for cell_line)
+    elif c_line != "ALL" and algorithm == "ALL" and fusion_description == "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            fusions.append(fusion)     
+    #linea cellulare specificata, mapping algorithm non specificato, fusion description non specificata, predicted effect specificato (1001)
+    elif c_line != "ALL" and algorithm == "ALL" and fusion_description == "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+            predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+            if predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                fusions.append(fusion)
+    #linea cellulare specificata, mapping algorithm non specificato, fusion description specificata, predicted effect non specificato (1010)
+    elif c_line != "ALL" and algorithm == "ALL" and fusion_description != "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion_description in fusion.description:
+                fusions.append(fusion)
+    #linea cellulare specificata, mapping algorithm non specificato, fusion description specificata, predicted effect specificato (1011)
+    elif c_line != "ALL" and algorithm == "ALL" and fusion_description != "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+                predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+                predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+                if fusion_description in fusion.description and predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                    fusions.append(fusion)
+    #linea cellulare specificata, mapping algorithm specificato, fusion description non specificato, predicted effect non specificato (1100)
+    elif c_line != "ALL" and algorithm != "ALL" and fusion_description == "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if algorithm in fusion.fusion_finding_method:
+                    fusion.append(fusion)
+    #linea cellulare specificata, mapping algorithm specificato, fusion description non specificato, predicted effect specificato (1101)
+    elif c_line != "ALL" and algorithm != "ALL" and fusion_description == "ALL" and predicted_effect1 != "ALL" and predicted_effect2 !="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+            predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+            if algorithm in fusion.fusion_finding_method and predicted_effect_1 == predicted_effect1 and predicted_effect_2 == predicted_effect2:
+                fusion.append(fusion)
+    #linea cellulare specificata, mapping algorithm specificato, fusion description specificata, predicted effect non specificato (1110)
+    elif c_line != "ALL" and algorithm != "ALL" and fusion_description != "ALL" and predicted_effect1 == "ALL" and predicted_effect2 =="ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            for fusion in c_l.happen:
+                if algorithm in fusion.fusion_finding_method and fusion_description in fusion.description:
+                    fusion.append(fusion)
+    else:
+    #tutti i dati specificati (1111)
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            predicted_effect_1 = fusion.fromGeneToFusion.relationship(fusion.fromGeneToFusion.all()[0]).predicted_effect
+            predicted_effect_2 = fusion.with_gene.relationship(fusion.with_gene.all()[0]).predicted_effect
+            if (algorithm in fusion.fusion_finding_method) and (fusion_description in fusion.description) and (predicted_effect1 == predicted_effect_1) and (predicted_effect2 == predicted_effect_2):
+                fusions.append(fusion)
 
     rows = build_rows(fusions,header)
     print(rows)
@@ -461,20 +555,23 @@ def generate_statistics(request):
     #   query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[:HAPPEN]->(f:Fusion) with c, f match (g1:Gene)-[:HAD]->(f) WITH c,f,collect(DISTINCT g1) AS set1 match (f)-[:WITH]->(g2:Gene) with c,f,set1,collect(DISTINCT g2) AS set2 with set1+set2 as both unwind both as res return count(distinct res)"
     #   results = db.cypher_query(query)
     #   cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
-    #for cell_line in CellLine.nodes.all():
-    #    genes = []
-    #    for fusion in cell_line.happen:
-    #        if fusion.fromGeneToFusion.all()[0].symbol not in genes:
-    #                 genes.append(fusion.fromGeneToFusion.all()[0].symbol)
-    #             if fusion.with_gene.all()[0].symbol not in genes:
-    #                 genes.append(fusion.with_gene.all()[0].symbol)
-    #         cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
-    #         print("done "+cell_line.cell_line)
     for cell_line in CellLine.nodes.all():
-        definition = dict(node_class=Gene, direction=match.OUTGOING, relation_type='*', model=None)
-        relations_traversal = match.Traversal(cell_line, Gene.__label__, definition)
-        genes = relations_traversal.all()
-        print(genes)
+        #genes = []
+        genes = {}
+        for fusion in cell_line.happen:
+            if fusion.fromGeneToFusion.all()[0].symbol not in genes:
+                #genes.append(fusion.fromGeneToFusion.all()[0].symbol)
+                genes[fusion.fromGeneToFusion.all()[0].symbol] = fusion.fromGeneToFusion.all()[0].symbol
+            if fusion.with_gene.all()[0].symbol not in genes:
+                #genes.append(fusion.with_gene.all()[0].symbol)
+                genes[fusion.with_gene.all()[0].symbol] = fusion.with_gene.all()[0].symbol
+            cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
+        print("done "+cell_line.cell_line)
+    #for cell_line in CellLine.nodes.all():
+    #    definition = dict(node_class=Gene, direction=match.OUTGOING, relation_type='*', model=None)
+    #    relations_traversal = match.Traversal(cell_line, Gene.__label__, definition)
+    #    genes = relations_traversal.all()
+    #    print(genes)
         
     cell_line_gene_f.close()
     
