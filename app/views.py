@@ -1,6 +1,6 @@
-from app.models import CellLine, Chromosome, Gene, Exon, Transcript
+from app.models import CellLine, Chromosome, Gene, Exon, Transcript, Fusion
 import json, csv
-#from neomodel import db, match
+from neomodel import db
 
 # Create your views here.
 from django.http import HttpResponse
@@ -529,57 +529,81 @@ def search_viruses(request,c_line,vir):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def generate_statistics(request):
+#def generate_statistics(request):
     #chromosome-fusion
-    chromosome_fusion_f =  open('chromosome_fusion.csv','w')
-    chromosome_fusion_w = csv.writer(chromosome_fusion_f)
-    chromosome_fusion_w.writerow(["Chromosome","Fusion"])
-    for chromosome in Chromosome.nodes.all():
+    #chromosome_fusion_f =  open('chromosome_fusion.csv','w')
+    #chromosome_fusion_w = csv.writer(chromosome_fusion_f, lineterminator='\n')
+    #chromosome_fusion_w.writerow(["Chromosome","Fusion"])
+    #for chromosome in Chromosome.nodes.all():
         #print(len(chromosome.fromFusiontoChromosome))
-        chromosome_fusion_w.writerow([chromosome.chromosome,len(chromosome.fromFusiontoChromosome)])
-    chromosome_fusion_f.close() 
+        #chromosome_fusion_w.writerow([chromosome.chromosome,len(chromosome.fromFusiontoChromosome)])
+    #    query = "match (c:Chromosome{chromosome:'"+chromosome.chromosome+"'})-[*..2]->(f:Fusion) return count(distinct f)"
+    #    chromosome_fusion_w.writerow([chromosome.chromosome,db.cypher_query(query)[0][0][0]])
+    #chromosome_fusion_f.close() 
     
     #cell line-fusion
-    cell_line_fusion_f =  open('cell_line_fusion.csv','w')
-    cell_line_fusion_w = csv.writer(cell_line_fusion_f)
-    cell_line_fusion_w.writerow(["Cell Line","Fusion"])
-    for cell_line in CellLine.nodes.all():
-        cell_line_fusion_w.writerow([cell_line.cell_line,len(cell_line.happen)])
-    cell_line_fusion_f.close()
-
+    #cell_line_fusion_f =  open('cell_line_fusion.csv','w')
+    #cell_line_fusion_w = csv.writer(cell_line_fusion_f, lineterminator='\n')
+    #cell_line_fusion_w.writerow(["Cell Line","Fusion"])
+    #for cell_line in CellLine.nodes.all():
+    #    cell_line_fusion_w.writerow([cell_line.cell_line,len(cell_line.happen)])
+    #cell_line_fusion_f.close()
+    #    query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[*..2]->(f:Fusion) return count(distinct f)"
+    #    cell_line_fusion_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
+    #cell_line_fusion_f.close()
     #cell line-gene
-    cell_line_gene_f =  open('cell_line_gene.csv','w')
-    cell_line_gene_w = csv.writer(cell_line_gene_f)
-    cell_line_gene_w.writerow(["Cell Line","Gene"])
+    #cell_line_gene_f =  open('cell_line_gene.csv','w')
+    #cell_line_gene_w = csv.writer(cell_line_gene_f, lineterminator='\n')
+    #cell_line_gene_w.writerow(["Cell Line","Gene"])
     #for cell_line in CellLine.nodes.all():
     #   query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[:HAPPEN]->(f:Fusion) with c, f match (g1:Gene)-[:HAD]->(f) WITH c,f,collect(DISTINCT g1) AS set1 match (f)-[:WITH]->(g2:Gene) with c,f,set1,collect(DISTINCT g2) AS set2 with set1+set2 as both unwind both as res return count(distinct res)"
     #   results = db.cypher_query(query)
     #   cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
-    for cell_line in CellLine.nodes.all():
+    #for cell_line in CellLine.nodes.all():
+    #    query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[*..2]-(g:Gene) return count(distinct g)"
+    #    cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
         #genes = []
-        genes = {}
-        for fusion in cell_line.happen:
-            if fusion.fromGeneToFusion.all()[0].symbol not in genes:
-                #genes.append(fusion.fromGeneToFusion.all()[0].symbol)
-                genes[fusion.fromGeneToFusion.all()[0].symbol] = fusion.fromGeneToFusion.all()[0].symbol
-            if fusion.with_gene.all()[0].symbol not in genes:
-                #genes.append(fusion.with_gene.all()[0].symbol)
-                genes[fusion.with_gene.all()[0].symbol] = fusion.with_gene.all()[0].symbol
-            cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
-        print("done "+cell_line.cell_line)
+        #genes = {}
+        #for fusion in cell_line.happen:
+        #    if fusion.fromGeneToFusion.all()[0].symbol not in genes:
+        #        genes.append(fusion.fromGeneToFusion.all()[0].symbol)
+        #        genes[fusion.fromGeneToFusion.all()[0].symbol] = fusion.fromGeneToFusion.all()[0].symbol
+        #    if fusion.with_gene.all()[0].symbol not in genes:
+        #        #genes.append(fusion.with_gene.all()[0].symbol)
+        #        genes[fusion.with_gene.all()[0].symbol] = fusion.with_gene.all()[0].symbol
+        #cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
+        #print("done "+cell_line.cell_line)
     #for cell_line in CellLine.nodes.all():
     #    definition = dict(node_class=Gene, direction=match.OUTGOING, relation_type='*', model=None)
     #    relations_traversal = match.Traversal(cell_line, Gene.__label__, definition)
     #    genes = relations_traversal.all()
     #    print(genes)
         
-    cell_line_gene_f.close()
-    
-    return HttpResponse()
         
+    #cell_line_gene_f.close()
     
-    
-    
+    #return HttpResponse()
+        
+def generate_statistics(request):
+    pairs = {CellLine:('CellLine','cell_line'),Fusion:('Fusion','fusion_id'),Chromosome:('Chromosome','chromosome'),Gene:('Gene','symbol') }
+    for node1,node_data1 in pairs.items():
+        for node2,node_data2 in pairs.items():
+            if node1 != node2:
+                if node_data1[0]=="Fusion":
+                    print("Fusion -no.") #fusion-cell_line è inutile e ci mette tempo, abolirei anche tutti quelli che iniziano con fusion
+                else:
+                    print(node_data1[0],node_data2[0])
+                    file =  open(node_data1[0]+'_'+node_data2[0]+'.csv','w')
+                    writer = csv.writer(file, lineterminator='\n')
+                    writer.writerow([node_data1[0],node_data2[0]])
+                    for x in node1.nodes.all():
+                        query = "match (x:"+node_data1[0]+"{"+node_data1[1]+":'"+str(eval("x."+str(node_data1[1])))+"'})-[*..2]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
+                        if(db.cypher_query(query)[0]): #ho la linea cellulare vuota, machecazz?
+                            #print([db.cypher_query(query)[0][0][0].properties[eval("'"+node_data1[1]+"'")],db.cypher_query(query)[0][0][1]])
+                            writer.writerow([db.cypher_query(query)[0][0][0].properties[eval("'"+node_data1[1]+"'")],db.cypher_query(query)[0][0][1]])
+                    file.close() 
+        
+    return HttpResponse()
     
     
     
