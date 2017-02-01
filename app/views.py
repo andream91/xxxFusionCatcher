@@ -5,25 +5,10 @@ from neomodel import db
 # Create your views here.
 from django.http import HttpResponse
 
-
 def search_for_cell_line(request,c_line):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
-    
+    header = get_header()
+    get_cell_line_from_disease("Colon adenocarcinoma")    
     # recupero fusioni nella linea cellulare
     fusions = []
     #se per tutte le linee cellulari mostra tutte le fusioni
@@ -36,28 +21,14 @@ def search_for_cell_line(request,c_line):
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             fusions.append(fusion)
     
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     #print(rows)
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
 def search_for_chromosome(request,c_line,chromos,start_point,end_point):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
+    header = get_header()
     
     # recupero fusioni nella linea cellulare
     fusions = []
@@ -79,7 +50,7 @@ def search_for_chromosome(request,c_line,chromos,start_point,end_point):
                 if fusion.at_chromosome.filter(chromosome__exact=chromos):
                     fusions.append(fusion)
     
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     print(rows)
     
     response['rows'] = {"header": header, "items": rows}
@@ -87,21 +58,7 @@ def search_for_chromosome(request,c_line,chromos,start_point,end_point):
 
 def search_for_gene(request,c_line,gene_one,gene_two):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
+    header = get_header()
     
     # recupero fusioni nella linea cellulare
     fusions = []
@@ -187,7 +144,7 @@ def search_for_gene(request,c_line,gene_one,gene_two):
             if (fusion.fromGeneToFusion.filter(symbol__exact=gene_one) and fusion.with_gene.filter(symbol__exact=gene_two)) or (fusion.fromGeneToFusion.filter(symbol__exact=gene_two) and fusion.with_gene.filter(symbol__exact=gene_one)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) and fusion.with_gene.filter(gene_id__exact=gene_two)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_two) and fusion.with_gene.filter(gene_id__exact=gene_one)):
                 fusions.append(fusion)
             
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     print(rows)
 
     response['rows'] = {"header": header, "items": rows}
@@ -197,21 +154,7 @@ def search_for_gene(request,c_line,gene_one,gene_two):
 
 def search_for_exon(request,c_line,exon_one,exon_two):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
+    header = get_header()
     
     # recupero fusioni nella linea cellulare
     fusions = []
@@ -242,7 +185,7 @@ def search_for_exon(request,c_line,exon_one,exon_two):
             if fusion.at_exon.filter(exon__exact=exon_one) and fusion.at_exon.filter(exon__exact=exon_two):
                     fusions.append(fusion)
 
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     print(rows)
 
     response['rows'] = {"header": header, "items": rows}
@@ -250,21 +193,7 @@ def search_for_exon(request,c_line,exon_one,exon_two):
 
 def search_for_transcript(request,c_line,transcript_one,transcript_two):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
+    header = get_header()
     
     # recupero fusioni nella linea cellulare
     fusions = []
@@ -298,7 +227,7 @@ def search_for_transcript(request,c_line,transcript_one,transcript_two):
                     fusions.append(fusion)
         
 
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     print(rows)
 
     response['rows'] = {"header": header, "items": rows}
@@ -306,21 +235,7 @@ def search_for_transcript(request,c_line,transcript_one,transcript_two):
 
 def search_for_fusion_information(request,c_line,algorithm,fusion_description,predicted_effect1,predicted_effect2):
     response = {}
-    header = ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
-        "Exon pair",
-        "Chromosome : fusion point : strand",
-        "Description",
-        "Counts of common mapping reads",
-        "Spanning pairs",
-        "Spanning unique reads",
-        "Longest anchor found",
-        "Fusion finding method",
-        "Fusion sequence",
-        "Predicted effect",
-        "Predicted fused transcripts",
-        "Predicted fused proteins"]
+    header = get_header()
     
     # recupero fusioni nella linea cellulare
     fusions = []
@@ -424,13 +339,14 @@ def search_for_fusion_information(request,c_line,algorithm,fusion_description,pr
             if (algorithm in fusion.fusion_finding_method) and (fusion_description in fusion.description) and (predicted_effect1 == predicted_effect_1) and (predicted_effect2 == predicted_effect_2):
                 fusions.append(fusion)
 
-    rows = build_rows(fusions,header)
+    rows = build_rows(fusions)
     print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def build_rows(fusions, header):
+def build_rows(fusions):
+    
     rows = []
     # ora che ho solo le fusioni interessate recupero le informazioni e mi costruisco la riga
     for myfusion in fusions:
@@ -528,61 +444,6 @@ def search_viruses(request,c_line,vir):
                 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
-
-#def generate_statistics(request):
-    #chromosome-fusion
-    #chromosome_fusion_f =  open('chromosome_fusion.csv','w')
-    #chromosome_fusion_w = csv.writer(chromosome_fusion_f, lineterminator='\n')
-    #chromosome_fusion_w.writerow(["Chromosome","Fusion"])
-    #for chromosome in Chromosome.nodes.all():
-        #print(len(chromosome.fromFusiontoChromosome))
-        #chromosome_fusion_w.writerow([chromosome.chromosome,len(chromosome.fromFusiontoChromosome)])
-    #    query = "match (c:Chromosome{chromosome:'"+chromosome.chromosome+"'})-[*..2]->(f:Fusion) return count(distinct f)"
-    #    chromosome_fusion_w.writerow([chromosome.chromosome,db.cypher_query(query)[0][0][0]])
-    #chromosome_fusion_f.close() 
-    
-    #cell line-fusion
-    #cell_line_fusion_f =  open('cell_line_fusion.csv','w')
-    #cell_line_fusion_w = csv.writer(cell_line_fusion_f, lineterminator='\n')
-    #cell_line_fusion_w.writerow(["Cell Line","Fusion"])
-    #for cell_line in CellLine.nodes.all():
-    #    cell_line_fusion_w.writerow([cell_line.cell_line,len(cell_line.happen)])
-    #cell_line_fusion_f.close()
-    #    query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[*..2]->(f:Fusion) return count(distinct f)"
-    #    cell_line_fusion_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
-    #cell_line_fusion_f.close()
-    #cell line-gene
-    #cell_line_gene_f =  open('cell_line_gene.csv','w')
-    #cell_line_gene_w = csv.writer(cell_line_gene_f, lineterminator='\n')
-    #cell_line_gene_w.writerow(["Cell Line","Gene"])
-    #for cell_line in CellLine.nodes.all():
-    #   query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[:HAPPEN]->(f:Fusion) with c, f match (g1:Gene)-[:HAD]->(f) WITH c,f,collect(DISTINCT g1) AS set1 match (f)-[:WITH]->(g2:Gene) with c,f,set1,collect(DISTINCT g2) AS set2 with set1+set2 as both unwind both as res return count(distinct res)"
-    #   results = db.cypher_query(query)
-    #   cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
-    #for cell_line in CellLine.nodes.all():
-    #    query = "match (c:CellLine{cell_line:'"+cell_line.cell_line+"'})-[*..2]-(g:Gene) return count(distinct g)"
-    #    cell_line_gene_w.writerow([cell_line.cell_line,db.cypher_query(query)[0][0][0]])
-        #genes = []
-        #genes = {}
-        #for fusion in cell_line.happen:
-        #    if fusion.fromGeneToFusion.all()[0].symbol not in genes:
-        #        genes.append(fusion.fromGeneToFusion.all()[0].symbol)
-        #        genes[fusion.fromGeneToFusion.all()[0].symbol] = fusion.fromGeneToFusion.all()[0].symbol
-        #    if fusion.with_gene.all()[0].symbol not in genes:
-        #        #genes.append(fusion.with_gene.all()[0].symbol)
-        #        genes[fusion.with_gene.all()[0].symbol] = fusion.with_gene.all()[0].symbol
-        #cell_line_gene_w.writerow([cell_line.cell_line,len(genes)])
-        #print("done "+cell_line.cell_line)
-    #for cell_line in CellLine.nodes.all():
-    #    definition = dict(node_class=Gene, direction=match.OUTGOING, relation_type='*', model=None)
-    #    relations_traversal = match.Traversal(cell_line, Gene.__label__, definition)
-    #    genes = relations_traversal.all()
-    #    print(genes)
-        
-        
-    #cell_line_gene_f.close()
-    
-    #return HttpResponse()
         
 def generate_statistics(request):
     pairs = {CellLine:('CellLine','cell_line'),Fusion:('Fusion','fusion_id'),Chromosome:('Chromosome','chromosome'),Gene:('Gene','symbol') }
@@ -597,6 +458,7 @@ def generate_statistics(request):
                     writer = csv.writer(file, lineterminator='\n')
                     writer.writerow([node_data1[0],node_data2[0]])
                     for x in node1.nodes.all():
+                        #query = "match (x:"+node_data1[0])-[*..2]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
                         query = "match (x:"+node_data1[0]+"{"+node_data1[1]+":'"+str(eval("x."+str(node_data1[1])))+"'})-[*..2]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
                         if(db.cypher_query(query)[0]): #ho la linea cellulare vuota, machecazz?
                             #print([db.cypher_query(query)[0][0][0].properties[eval("'"+node_data1[1]+"'")],db.cypher_query(query)[0][0][1]])
@@ -605,6 +467,61 @@ def generate_statistics(request):
         
     return HttpResponse()
     
+def get_ccle_infos():
+    header = ["ID","Cell Line","Disease","Disease name"]
+    rows = []
+    response = {}
     
+    txt_file = open("ccle_ids.txt", "r")
+    next(txt_file)
+    for line in txt_file:
+        words = line.split("\t")
+        rows.append([words[0].replace(" ",""),words[1],words[2],words[3].replace("\n","")])
+        #print(words)
     
+    #response['rows'] = {"header": header, "items": rows}
+
+    return rows
+    
+def get_header():
+    return ["Cell line",
+        "Gene pair symbols",
+        "Gene pair EnsIDs",
+        "Exon pair",
+        "Chromosome : fusion point : strand",
+        "Description",
+        "Counts of common mapping reads",
+        "Spanning pairs",
+        "Spanning unique reads",
+        "Longest anchor found",
+        "Fusion finding method",
+        "Fusion sequence",
+        "Predicted effect",
+        "Predicted fused transcripts",
+        "Predicted fused proteins"]
+    
+    #prendo in input una stringa che è il nome della malattia, mi ricavo le linee cellulari corrispondenti e mi ricavo la tabella relativa
+def get_cell_line_from_disease(disease):
+    ccle_infos = get_ccle_infos()
+    cls = []
+    for row in ccle_infos:
+        if disease in row:
+            cls.append(row[0])
+    return cls
+
+def search_for_disease(request,disease):
+    cls = get_cell_line_from_disease(disease)
+    fusions = []
+    for cl in cls:
+        response = {}
+        header = get_header()
+        for fusion in CellLine.nodes.get(cell_line = cl).happen:
+            fusions.append(fusion)
+        
+    rows = build_rows(fusions)
+    
+    response['rows'] = {"header": header, "items": rows}    
+        
+    return HttpResponse(json.dumps(response))    
+        
     

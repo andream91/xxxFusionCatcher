@@ -1,0 +1,936 @@
+ID	CELL_LINE	DISEASE	DISEASE_NAME
+CCLE_001 	TE441T	SARC	Sarcoma
+CCLE_002 	SNU1196	LIHC	Liver hepatocellular carcinoma
+CCLE_003 	HCC2157	BRCA	Breast invasive carcinoma
+CCLE_004 	RH30	SARC	Sarcoma
+CCLE_005 	PATU8988T	PAAD	Pancreatic adenocarcinoma
+CCLE_006 	MELHO	SKCM	Skin Cutaneous Melanoma
+CCLE_007 	OAW28	OV	Ovarian serous cystadenocarcinoma
+CCLE_008 	AsPC1	PAAD	Pancreatic adenocarcinoma
+CCLE_009 	OV90	OV	Ovarian serous cystadenocarcinoma
+CCLE_010 	GP2d	COAD	Colon adenocarcinoma
+CCLE_011 	OUMS23	COAD	Colon adenocarcinoma
+CCLE_012 	K562	LCLL	Chronic Lymphocytic Leukemia
+CCLE_013 	NCIH810	LUSC	Lung squamous cell carcinoma
+CCLE_014 	T84	COAD	Colon adenocarcinoma
+CCLE_015 	HEC265	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_016 	IMR32	LGG	Brain Lower Grade Glioma
+CCLE_017 	SNUC5	COAD	Colon adenocarcinoma
+CCLE_018 	VMRCRCW	KIRC	Kidney renal clear cell carcinoma
+CCLE_019 	GCT	SARC	Sarcoma
+CCLE_020 	Hs698T	COAD	Colon adenocarcinoma
+CCLE_021 	UO31	KIRC	Kidney renal clear cell carcinoma
+CCLE_022 	HCC1438	LUSC	Lung squamous cell carcinoma
+CCLE_023 	LS180	COAD	Colon adenocarcinoma
+CCLE_024 	JHUEM2	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_025 	NCIH1703	LUSC	Lung squamous cell carcinoma
+CCLE_026 	PATU8902	PAAD	Pancreatic adenocarcinoma
+CCLE_027 	SIMA	LGG	Brain Lower Grade Glioma
+CCLE_028 	HPAFII	PAAD	Pancreatic adenocarcinoma
+CCLE_029 	JURKAT	LCLL	Chronic Lymphocytic Leukemia
+CCLE_030 	SW1573	LUSC	Lung squamous cell carcinoma
+CCLE_031 	HCC15	LUSC	Lung squamous cell carcinoma
+CCLE_032 	MONOMAC1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_033 	SF539	LGG	Brain Lower Grade Glioma
+CCLE_034 	SW48	COAD	Colon adenocarcinoma
+CCLE_035 	SCLC21H	LUSC	Lung squamous cell carcinoma
+CCLE_036 	HT1376	BLCA	Bladder Urothelial Carcinoma
+CCLE_037 	NUDHL1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_038 	Hs737T	SARC	Sarcoma
+CCLE_039 	NCIH2342	LUSC	Lung squamous cell carcinoma
+CCLE_040 	U251MG	LGG	Brain Lower Grade Glioma
+CCLE_041 	MHHNB11	LGG	Brain Lower Grade Glioma
+CCLE_042 	KASUMI2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_043 	NCIH2073	LUSC	Lung squamous cell carcinoma
+CCLE_044 	647V	BLCA	Bladder Urothelial Carcinoma
+CCLE_045 	JVM2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_046 	Detroit562	HNSC	Head and Neck squamous cell carcinoma
+CCLE_047 	SNB75	LGG	Brain Lower Grade Glioma
+CCLE_048 	SNU478	LIHC	Liver hepatocellular carcinoma
+CCLE_049 	NCIH1435	LUSC	Lung squamous cell carcinoma
+CCLE_050 	Hs863T	SARC	Sarcoma
+CCLE_051 	LCLC103H	LUSC	Lung squamous cell carcinoma
+CCLE_052 	AU565	BRCA	Breast invasive carcinoma
+CCLE_053 	RERFLCAI	LUSC	Lung squamous cell carcinoma
+CCLE_054 	GSU	STAD	Stomach adenocarcinoma
+CCLE_055 	MV411	LCLL	Chronic Lymphocytic Leukemia
+CCLE_056 	NCIH2122	LUSC	Lung squamous cell carcinoma
+CCLE_057 	TE15	ESCA	Esophageal carcinoma
+CCLE_058 	UACC893	BRCA	Breast invasive carcinoma
+CCLE_059 	JL1	LUSC	Lung squamous cell carcinoma
+CCLE_060 	OCILY3	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_061 	NCIH929	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_062 	G361	SKCM	Skin Cutaneous Melanoma
+CCLE_063 	SNU423	LIHC	Liver hepatocellular carcinoma
+CCLE_064 	NCIH1339	LUSC	Lung squamous cell carcinoma
+CCLE_065 	8505C	THCA	Thyroid carcinoma
+CCLE_066 	MHHCALL4	LCLL	Chronic Lymphocytic Leukemia
+CCLE_067 	TE5	ESCA	Esophageal carcinoma
+CCLE_068 	KMS20	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_069 	KOPN8	LCLL	Chronic Lymphocytic Leukemia
+CCLE_070 	GSS	STAD	Stomach adenocarcinoma
+CCLE_071 	BT483	BRCA	Breast invasive carcinoma
+CCLE_072 	NH6	LGG	Brain Lower Grade Glioma
+CCLE_073 	KMRC3	KIRC	Kidney renal clear cell carcinoma
+CCLE_074 	WM793	SKCM	Skin Cutaneous Melanoma
+CCLE_075 	U118MG	LGG	Brain Lower Grade Glioma
+CCLE_076 	HCC1359	LUSC	Lung squamous cell carcinoma
+CCLE_077 	COLO678	COAD	Colon adenocarcinoma
+CCLE_078 	Hs895T	SKCM	Skin Cutaneous Melanoma
+CCLE_079 	DND41	LCLL	Chronic Lymphocytic Leukemia
+CCLE_080 	MUTZ3	LCLL	Chronic Lymphocytic Leukemia
+CCLE_081 	SNU1105	LGG	Brain Lower Grade Glioma
+CCLE_082 	Hs739T	BRCA	Breast invasive carcinoma
+CCLE_083 	C2BBe1	COAD	Colon adenocarcinoma
+CCLE_084 	NCIH522	LUSC	Lung squamous cell carcinoma
+CCLE_085 	ACHN	KIRC	Kidney renal clear cell carcinoma
+CCLE_086 	KYSE180	ESCA	Esophageal carcinoma
+CCLE_087 	PANC1	PAAD	Pancreatic adenocarcinoma
+CCLE_088 	CORL311	LUSC	Lung squamous cell carcinoma
+CCLE_089 	LXF289	LUSC	Lung squamous cell carcinoma
+CCLE_090 	BFTC909	KIRC	Kidney renal clear cell carcinoma
+CCLE_091 	HEC108	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_092 	COLO680N	ESCA	Esophageal carcinoma
+CCLE_093 	KYO1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_094 	ES2	OV	Ovarian serous cystadenocarcinoma
+CCLE_095 	MONOMAC6	LCLL	Chronic Lymphocytic Leukemia
+CCLE_096 	ACCMESO1	MESO	Mesothelioma
+CCLE_097 	CAL12T	LUSC	Lung squamous cell carcinoma
+CCLE_098 	P3HR1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_099 	NB1	LGG	Brain Lower Grade Glioma
+CCLE_100 	PATU8988S	PAAD	Pancreatic adenocarcinoma
+CCLE_101 	HT115	COAD	Colon adenocarcinoma
+CCLE_102 	Toledo	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_103 	HCC2218	BRCA	Breast invasive carcinoma
+CCLE_104 	NCIH2196	LUSC	Lung squamous cell carcinoma
+CCLE_105 	EFM19	BRCA	Breast invasive carcinoma
+CCLE_106 	HGC27	STAD	Stomach adenocarcinoma
+CCLE_107 	NCIH1869	LUSC	Lung squamous cell carcinoma
+CCLE_108 	EKVX	LUSC	Lung squamous cell carcinoma
+CCLE_109 	HSC2	HNSC	Head and Neck squamous cell carcinoma
+CCLE_110 	SKHEP1	LIHC	Liver hepatocellular carcinoma
+CCLE_111 	OCUM1	STAD	Stomach adenocarcinoma
+CCLE_112 	CORL105	LUSC	Lung squamous cell carcinoma
+CCLE_113 	ME1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_114 	CADOES1	SARC	Sarcoma
+CCLE_115 	SIGM5	LCLL	Chronic Lymphocytic Leukemia
+CCLE_116 	MDAMB415	BRCA	Breast invasive carcinoma
+CCLE_117 	huH1	LIHC	Liver hepatocellular carcinoma
+CCLE_118 	SCC15	HNSC	Head and Neck squamous cell carcinoma
+CCLE_119 	SNU201	LGG	Brain Lower Grade Glioma
+CCLE_120 	HuT102	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_121 	Hs940T	SKCM	Skin Cutaneous Melanoma
+CCLE_122 	BL41	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_123 	LS123	COAD	Colon adenocarcinoma
+CCLE_124 	JURLMK1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_125 	JHH7	LIHC	Liver hepatocellular carcinoma
+CCLE_126 	NCIH1693	LUSC	Lung squamous cell carcinoma
+CCLE_127 	CCFSTTG1	LGG	Brain Lower Grade Glioma
+CCLE_128 	MKN1	STAD	Stomach adenocarcinoma
+CCLE_129 	CAL54	KIRC	Kidney renal clear cell carcinoma
+CCLE_130 	GB1	LGG	Brain Lower Grade Glioma
+CCLE_131 	NCIH226	LUSC	Lung squamous cell carcinoma
+CCLE_132 	MM1S	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_133 	HCC202	BRCA	Breast invasive carcinoma
+CCLE_134 	NCIH526	LUSC	Lung squamous cell carcinoma
+CCLE_135 	OVTOKO	OV	Ovarian serous cystadenocarcinoma
+CCLE_136 	NCIH1568	LUSC	Lung squamous cell carcinoma
+CCLE_137 	JHH6	LIHC	Liver hepatocellular carcinoma
+CCLE_138 	Hs616T	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_139 	HCC4006	LUSC	Lung squamous cell carcinoma
+CCLE_140 	RPMI8402	LCLL	Chronic Lymphocytic Leukemia
+CCLE_141 	CHP126	LGG	Brain Lower Grade Glioma
+CCLE_142 	KMS34	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_143 	CAL51	BRCA	Breast invasive carcinoma
+CCLE_144 	253JBV	BLCA	Bladder Urothelial Carcinoma
+CCLE_145 	MG63	SARC	Sarcoma
+CCLE_146 	42MGBA	LGG	Brain Lower Grade Glioma
+CCLE_147 	TE14	ESCA	Esophageal carcinoma
+CCLE_148 	HCC1588	LUSC	Lung squamous cell carcinoma
+CCLE_149 	HuH6	LIHC	Liver hepatocellular carcinoma
+CCLE_150 	HCC366	LUSC	Lung squamous cell carcinoma
+CCLE_151 	NCIH684	LIHC	Liver hepatocellular carcinoma
+CCLE_152 	RCHACV	LCLL	Chronic Lymphocytic Leukemia
+CCLE_153 	JM1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_154 	JHOS2	OV	Ovarian serous cystadenocarcinoma
+CCLE_155 	SNU449	LIHC	Liver hepatocellular carcinoma
+CCLE_156 	ALLSIL	LCLL	Chronic Lymphocytic Leukemia
+CCLE_157 	Caki2	KIRC	Kidney renal clear cell carcinoma
+CCLE_158 	SNU738	LGG	Brain Lower Grade Glioma
+CCLE_159 	TO175T	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_160 	U2OS	SARC	Sarcoma
+CCLE_161 	A498	KIRC	Kidney renal clear cell carcinoma
+CCLE_162 	RERFLCAd1	LUSC	Lung squamous cell carcinoma
+CCLE_163 	NCIH1155	LUSC	Lung squamous cell carcinoma
+CCLE_164 	KE39	STAD	Stomach adenocarcinoma
+CCLE_165 	IGROV1	OV	Ovarian serous cystadenocarcinoma
+CCLE_166 	RL952	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_167 	TE11	ESCA	Esophageal carcinoma
+CCLE_168 	HCT116	COAD	Colon adenocarcinoma
+CCLE_169 	IGR1	SKCM	Skin Cutaneous Melanoma
+CCLE_170 	NCIH292	LUSC	Lung squamous cell carcinoma
+CCLE_171 	Hs934T	SKCM	Skin Cutaneous Melanoma
+CCLE_172 	KU812	LCLL	Chronic Lymphocytic Leukemia
+CCLE_173 	Caov4	OV	Ovarian serous cystadenocarcinoma
+CCLE_174 	HCC1419	BRCA	Breast invasive carcinoma
+CCLE_175 	RS5	LUSC	Lung squamous cell carcinoma
+CCLE_176 	JIMT1	BRCA	Breast invasive carcinoma
+CCLE_177 	NCIH446	LUSC	Lung squamous cell carcinoma
+CCLE_178 	Capan2	PAAD	Pancreatic adenocarcinoma
+CCLE_179 	SUDHL8	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_180 	NCIH1581	LUSC	Lung squamous cell carcinoma
+CCLE_181 	THP1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_182 	A673	SARC	Sarcoma
+CCLE_183 	ISTMES2	LUSC	Lung squamous cell carcinoma
+CCLE_184 	CMK	LCLL	Chronic Lymphocytic Leukemia
+CCLE_185 	SNU1197	COAD	Colon adenocarcinoma
+CCLE_186 	HuTu80	STAD	Stomach adenocarcinoma
+CCLE_187 	JVM3	LCLL	Chronic Lymphocytic Leukemia
+CCLE_188 	SNU1214	HNSC	Head and Neck squamous cell carcinoma
+CCLE_189 	KMS11	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_190 	BFTC905	BLCA	Bladder Urothelial Carcinoma
+CCLE_191 	LS411N	COAD	Colon adenocarcinoma
+CCLE_192 	HT1197	BLCA	Bladder Urothelial Carcinoma
+CCLE_193 	KPNSI9s	LGG	Brain Lower Grade Glioma
+CCLE_194 	BHY	HNSC	Head and Neck squamous cell carcinoma
+CCLE_195 	T3M4	PAAD	Pancreatic adenocarcinoma
+CCLE_196 	NCIH889	LUSC	Lung squamous cell carcinoma
+CCLE_197 	SKLU1	LUSC	Lung squamous cell carcinoma
+CCLE_198 	EFM192A	BRCA	Breast invasive carcinoma
+CCLE_199 	NUGC2	STAD	Stomach adenocarcinoma
+CCLE_200 	OV7	OV	Ovarian serous cystadenocarcinoma
+CCLE_201 	NCIH596	LUSC	Lung squamous cell carcinoma
+CCLE_202 	IGR37	SKCM	Skin Cutaneous Melanoma
+CCLE_203 	Hs688(A)T	SKCM	Skin Cutaneous Melanoma
+CCLE_204 	BL70	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_205 	NCIH2286	LUSC	Lung squamous cell carcinoma
+CCLE_206 	KM12	COAD	Colon adenocarcinoma
+CCLE_207 	CHP212	LGG	Brain Lower Grade Glioma
+CCLE_208 	HEC1A	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_209 	TEN	UCEC	Uterine Corpus Endometrioid Carcinoma
+CCLE_210 	RT4	BLCA	Bladder Urothelial Carcinoma
+CCLE_211 	NCIH727	LUSC	Lung squamous cell carcinoma
+CCLE_212 	DB	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_213 	GOS3	LGG	Brain Lower Grade Glioma
+CCLE_214 	SUDHL10	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_215 	Calu6	LUSC	Lung squamous cell carcinoma
+CCLE_216 	COV362	OV	Ovarian serous cystadenocarcinoma
+CCLE_217 	NCIH2171	LUSC	Lung squamous cell carcinoma
+CCLE_218 	Kasumi6	LCLL	Chronic Lymphocytic Leukemia
+CCLE_219 	Li7	LIHC	Liver hepatocellular carcinoma
+CCLE_220 	L540	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_221 	HCC827	LUSC	Lung squamous cell carcinoma
+CCLE_222 	YAPC	PAAD	Pancreatic adenocarcinoma
+CCLE_223 	KMRC20	KIRC	Kidney renal clear cell carcinoma
+CCLE_224 	FaDu	HNSC	Head and Neck squamous cell carcinoma
+CCLE_225 	ZR751	BRCA	Breast invasive carcinoma
+CCLE_226 	A375	SKCM	Skin Cutaneous Melanoma
+CCLE_227 	Hs695T	SKCM	Skin Cutaneous Melanoma
+CCLE_228 	MDAMB175VII	BRCA	Breast invasive carcinoma
+CCLE_229 	22Rv1	PRAD	Prostate adenocarcinoma
+CCLE_230 	Hs675T	COAD	Colon adenocarcinoma
+CCLE_231 	MIAPaCa2	PAAD	Pancreatic adenocarcinoma
+CCLE_232 	NCIH1105	LUSC	Lung squamous cell carcinoma
+CCLE_233 	Daudi	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_234 	VMRCRCZ	KIRC	Kidney renal clear cell carcinoma
+CCLE_235 	NCIH1666	LUSC	Lung squamous cell carcinoma
+CCLE_236 	SKNDZ	LGG	Brain Lower Grade Glioma
+CCLE_237 	ZR7530	BRCA	Breast invasive carcinoma
+CCLE_238 	EFO27	OV	Ovarian serous cystadenocarcinoma
+CCLE_239 	NCIH2444	LUSC	Lung squamous cell carcinoma
+CCLE_240 	MFE319	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_241 	Ishikawa(Heraklio)02ER	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_242 	SKMEL5	SKCM	Skin Cutaneous Melanoma
+CCLE_243 	SJSA1	SARC	Sarcoma
+CCLE_244 	KMS12BM	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_245 	HuH7	LIHC	Liver hepatocellular carcinoma
+CCLE_246 	SKMEL24	SKCM	Skin Cutaneous Melanoma
+CCLE_247 	OVMANA	OV	Ovarian serous cystadenocarcinoma
+CCLE_248 	KMRC2	KIRC	Kidney renal clear cell carcinoma
+CCLE_249 	MSTO211H	LUSC	Lung squamous cell carcinoma
+CCLE_250 	HCC1806	BRCA	Breast invasive carcinoma
+CCLE_251 	OVISE	OV	Ovarian serous cystadenocarcinoma
+CCLE_252 	EFO21	OV	Ovarian serous cystadenocarcinoma
+CCLE_253 	PE/CAPJ15	HNSC	Head and Neck squamous cell carcinoma
+CCLE_254 	MDAMB436	BRCA	Breast invasive carcinoma
+CCLE_255 	T24	BLCA	Bladder Urothelial Carcinoma
+CCLE_256 	HCC2279	LUSC	Lung squamous cell carcinoma
+CCLE_257 	NCIH1838	LUSC	Lung squamous cell carcinoma
+CCLE_258 	SW900	LUSC	Lung squamous cell carcinoma
+CCLE_259 	253J	BLCA	Bladder Urothelial Carcinoma
+CCLE_260 	PF382	LCLL	Chronic Lymphocytic Leukemia
+CCLE_261 	NCIH1781	LUSC	Lung squamous cell carcinoma
+CCLE_262 	HCC1143	BRCA	Breast invasive carcinoma
+CCLE_263 	SNU5	STAD	Stomach adenocarcinoma
+CCLE_264 	SNU1041	HNSC	Head and Neck squamous cell carcinoma
+CCLE_265 	NCIH2110	LUSC	Lung squamous cell carcinoma
+CCLE_266 	Hs839T	SKCM	Skin Cutaneous Melanoma
+CCLE_267 	RKO	COAD	Colon adenocarcinoma
+CCLE_268 	NCIH510	LUSC	Lung squamous cell carcinoma
+CCLE_269 	VCaP	PRAD	Prostate adenocarcinoma
+CCLE_270 	SNU466	LGG	Brain Lower Grade Glioma
+CCLE_271 	MOLP8	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_272 	NCCStCK140	STAD	Stomach adenocarcinoma
+CCLE_273 	NUGC4	STAD	Stomach adenocarcinoma
+CCLE_274 	TE125T	SARC	Sarcoma
+CCLE_275 	C32	SKCM	Skin Cutaneous Melanoma
+CCLE_276 	BC3C	BLCA	Bladder Urothelial Carcinoma
+CCLE_277 	NCIH1648	LUSC	Lung squamous cell carcinoma
+CCLE_278 	SNU489	LGG	Brain Lower Grade Glioma
+CCLE_279 	NCIH1437	LUSC	Lung squamous cell carcinoma
+CCLE_280 	AGS	STAD	Stomach adenocarcinoma
+CCLE_281 	MDAPCa2b	PRAD	Prostate adenocarcinoma
+CCLE_282 	MOLM13	LCLL	Chronic Lymphocytic Leukemia
+CCLE_283 	YD8	HNSC	Head and Neck squamous cell carcinoma
+CCLE_284 	COLO320	COAD	Colon adenocarcinoma
+CCLE_285 	SW1353	SARC	Sarcoma
+CCLE_286 	OCIM1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_287 	Hs611T	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_288 	RKN	SARC	Sarcoma
+CCLE_289 	JHH1	LIHC	Liver hepatocellular carcinoma
+CCLE_290 	MCAS	OV	Ovarian serous cystadenocarcinoma
+CCLE_291 	KASUMI1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_292 	PLC/PRF/5	LIHC	Liver hepatocellular carcinoma
+CCLE_293 	DEL	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_294 	TUHR10TKB	KIRC	Kidney renal clear cell carcinoma
+CCLE_295 	HMCB	SKCM	Skin Cutaneous Melanoma
+CCLE_296 	NALM19	LCLL	Chronic Lymphocytic Leukemia
+CCLE_297 	HDQP1	BRCA	Breast invasive carcinoma
+CCLE_298 	MESSA	SARC	Sarcoma
+CCLE_299 	SNU475	LIHC	Liver hepatocellular carcinoma
+CCLE_300 	NCIH1299	LUSC	Lung squamous cell carcinoma
+CCLE_301 	NCIH2085	LUSC	Lung squamous cell carcinoma
+CCLE_302 	KS1	LGG	Brain Lower Grade Glioma
+CCLE_303 	RPMI7951	SKCM	Skin Cutaneous Melanoma
+CCLE_304 	DMS273	LUSC	Lung squamous cell carcinoma
+CCLE_305 	NCIH322	LUSC	Lung squamous cell carcinoma
+CCLE_306 	TM31	LGG	Brain Lower Grade Glioma
+CCLE_307 	SH4	SKCM	Skin Cutaneous Melanoma
+CCLE_308 	MOLT13	LCLL	Chronic Lymphocytic Leukemia
+CCLE_309 	SNU1272	KIRC	Kidney renal clear cell carcinoma
+CCLE_310 	KHM1B	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_311 	GCIY	STAD	Stomach adenocarcinoma
+CCLE_312 	SNU16	STAD	Stomach adenocarcinoma
+CCLE_313 	DBTRG05MG	LGG	Brain Lower Grade Glioma
+CCLE_314 	HCC1395	BRCA	Breast invasive carcinoma
+CCLE_315 	SNU899	HNSC	Head and Neck squamous cell carcinoma
+CCLE_316 	KALS1	LGG	Brain Lower Grade Glioma
+CCLE_317 	RI1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_318 	MHHCALL2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_319 	SUDHL1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_320 	NAMALWA	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_321 	NCIH1573	LUSC	Lung squamous cell carcinoma
+CCLE_322 	SNU620	STAD	Stomach adenocarcinoma
+CCLE_323 	SKMM2	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_324 	ML1	THCA	Thyroid carcinoma
+CCLE_325 	RH18	SARC	Sarcoma
+CCLE_326 	NCIH2052	LUSC	Lung squamous cell carcinoma
+CCLE_327 	MPP89	LUSC	Lung squamous cell carcinoma
+CCLE_328 	CAL33	HNSC	Head and Neck squamous cell carcinoma
+CCLE_329 	TE159T	SARC	Sarcoma
+CCLE_330 	NCIH1915	LUSC	Lung squamous cell carcinoma
+CCLE_331 	SUPT1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_332 	WM983B	SKCM	Skin Cutaneous Melanoma
+CCLE_333 	JHH2	LIHC	Liver hepatocellular carcinoma
+CCLE_334 	KMBC2	BLCA	Bladder Urothelial Carcinoma
+CCLE_335 	UACC812	BRCA	Breast invasive carcinoma
+CCLE_336 	MDAMB468	BRCA	Breast invasive carcinoma
+CCLE_337 	NCO2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_338 	NCIH460	LUSC	Lung squamous cell carcinoma
+CCLE_339 	Daoy	LGG	Brain Lower Grade Glioma
+CCLE_340 	KiJK	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_341 	MHHES1	SARC	Sarcoma
+CCLE_342 	KPL1	BRCA	Breast invasive carcinoma
+CCLE_343 	OAW42	OV	Ovarian serous cystadenocarcinoma
+CCLE_344 	LU65	LUSC	Lung squamous cell carcinoma
+CCLE_345 	SNGM	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_346 	BCP1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_347 	HCC2935	LUSC	Lung squamous cell carcinoma
+CCLE_348 	SNU182	LIHC	Liver hepatocellular carcinoma
+CCLE_349 	KARPAS620	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_350 	SNU668	STAD	Stomach adenocarcinoma
+CCLE_351 	SNU1040	COAD	Colon adenocarcinoma
+CCLE_352 	HCC1195	LUSC	Lung squamous cell carcinoma
+CCLE_353 	SNU8	OV	Ovarian serous cystadenocarcinoma
+CCLE_354 	RERFLCAd2	LUSC	Lung squamous cell carcinoma
+CCLE_355 	639V	BLCA	Bladder Urothelial Carcinoma
+CCLE_356 	DU145	PRAD	Prostate adenocarcinoma
+CCLE_357 	SKUT1	SARC	Sarcoma
+CCLE_358 	NCIH1792	LUSC	Lung squamous cell carcinoma
+CCLE_359 	Loucy	LCLL	Chronic Lymphocytic Leukemia
+CCLE_360 	BT549	BRCA	Breast invasive carcinoma
+CCLE_361 	LOXIMVI	SKCM	Skin Cutaneous Melanoma
+CCLE_362 	BCPAP	THCA	Thyroid carcinoma
+CCLE_363 	KCL22	LCLL	Chronic Lymphocytic Leukemia
+CCLE_364 	CAL78	SARC	Sarcoma
+CCLE_365 	NCIH841	LUSC	Lung squamous cell carcinoma
+CCLE_366 	JMSU1	BLCA	Bladder Urothelial Carcinoma
+CCLE_367 	SR786	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_368 	SF126	LGG	Brain Lower Grade Glioma
+CCLE_369 	LS513	COAD	Colon adenocarcinoma
+CCLE_370 	WM115	SKCM	Skin Cutaneous Melanoma
+CCLE_371 	Panc0327	PAAD	Pancreatic adenocarcinoma
+CCLE_372 	Hs255T	COAD	Colon adenocarcinoma
+CCLE_373 	NCIH716	COAD	Colon adenocarcinoma
+CCLE_374 	UBLC1	BLCA	Bladder Urothelial Carcinoma
+CCLE_375 	DKMG	LGG	Brain Lower Grade Glioma
+CCLE_376 	MHHCALL3	LCLL	Chronic Lymphocytic Leukemia
+CCLE_377 	SNU213	PAAD	Pancreatic adenocarcinoma
+CCLE_378 	ECGI10	ESCA	Esophageal carcinoma
+CCLE_379 	HUPT4	PAAD	Pancreatic adenocarcinoma
+CCLE_380 	A3/KAW	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_381 	MEG01	LCLL	Chronic Lymphocytic Leukemia
+CCLE_382 	SKMES1	LUSC	Lung squamous cell carcinoma
+CCLE_383 	H4	LGG	Brain Lower Grade Glioma
+CCLE_384 	EB1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_385 	HUPT3	PAAD	Pancreatic adenocarcinoma
+CCLE_386 	SUDHL4	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_387 	BICR18	HNSC	Head and Neck squamous cell carcinoma
+CCLE_388 	MKN7	STAD	Stomach adenocarcinoma
+CCLE_389 	Hs229T	LUSC	Lung squamous cell carcinoma
+CCLE_390 	MOLM6	LCLL	Chronic Lymphocytic Leukemia
+CCLE_391 	SKBR3	BRCA	Breast invasive carcinoma
+CCLE_392 	ST486	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_393 	HCC38	BRCA	Breast invasive carcinoma
+CCLE_394 	SKNAS	LGG	Brain Lower Grade Glioma
+CCLE_395 	DU4475	BRCA	Breast invasive carcinoma
+CCLE_396 	NCIH1975	LUSC	Lung squamous cell carcinoma
+CCLE_397 	SNU761	LIHC	Liver hepatocellular carcinoma
+CCLE_398 	A2058	SKCM	Skin Cutaneous Melanoma
+CCLE_399 	RERFGC1B	STAD	Stomach adenocarcinoma
+CCLE_400 	SNU61	COAD	Colon adenocarcinoma
+CCLE_401 	SU8686	PAAD	Pancreatic adenocarcinoma
+CCLE_402 	BICR16	HNSC	Head and Neck squamous cell carcinoma
+CCLE_403 	LAMA84	LCLL	Chronic Lymphocytic Leukemia
+CCLE_404 	NCIH2030	LUSC	Lung squamous cell carcinoma
+CCLE_405 	MFE296	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_406 	NCIH650	LUSC	Lung squamous cell carcinoma
+CCLE_407 	Panc0203	PAAD	Pancreatic adenocarcinoma
+CCLE_408 	MDAMB435S	BRCA	Breast invasive carcinoma
+CCLE_409 	CL11	COAD	Colon adenocarcinoma
+CCLE_410 	HepG2	LIHC	Liver hepatocellular carcinoma
+CCLE_411 	ABC1	LUSC	Lung squamous cell carcinoma
+CCLE_412 	CAS1	LGG	Brain Lower Grade Glioma
+CCLE_413 	DMS114	LUSC	Lung squamous cell carcinoma
+CCLE_414 	JHUEM1	UCEC	Uterine Corpus Endometrioid Carcinoma
+CCLE_415 	23132/87	STAD	Stomach adenocarcinoma
+CCLE_416 	ChaGoK1	LUSC	Lung squamous cell carcinoma
+CCLE_417 	T173	SARC	Sarcoma
+CCLE_418 	SUPB15	LCLL	Chronic Lymphocytic Leukemia
+CCLE_419 	YH13	LGG	Brain Lower Grade Glioma
+CCLE_420 	SNUC4	COAD	Colon adenocarcinoma
+CCLE_421 	LoVo	COAD	Colon adenocarcinoma
+CCLE_422 	SNU398	LIHC	Liver hepatocellular carcinoma
+CCLE_423 	NCIH358	LUSC	Lung squamous cell carcinoma
+CCLE_424 	HCC1937	BRCA	Breast invasive carcinoma
+CCLE_425 	PK59	PAAD	Pancreatic adenocarcinoma
+CCLE_426 	HH	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_427 	KNS62	LUSC	Lung squamous cell carcinoma
+CCLE_428 	ONS76	LGG	Brain Lower Grade Glioma
+CCLE_429 	TE4	ESCA	Esophageal carcinoma
+CCLE_430 	LU99	LUSC	Lung squamous cell carcinoma
+CCLE_431 	MUTZ5	LCLL	Chronic Lymphocytic Leukemia
+CCLE_432 	KMH2	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_433 	NCIH1734	LUSC	Lung squamous cell carcinoma
+CCLE_434 	SNU216	STAD	Stomach adenocarcinoma
+CCLE_435 	HCC78	LUSC	Lung squamous cell carcinoma
+CCLE_436 	HEC251	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_437 	A253	HNSC	Head and Neck squamous cell carcinoma
+CCLE_438 	CORL88	LUSC	Lung squamous cell carcinoma
+CCLE_439 	SCaBER	BLCA	Bladder Urothelial Carcinoma
+CCLE_440 	NCIH2405	LUSC	Lung squamous cell carcinoma
+CCLE_441 	NCIH1876	LUSC	Lung squamous cell carcinoma
+CCLE_442 	TT2609C02	THCA	Thyroid carcinoma
+CCLE_443 	RMGI	OV	Ovarian serous cystadenocarcinoma
+CCLE_444 	Hs840T	HNSC	Head and Neck squamous cell carcinoma
+CCLE_445 	769P	KIRC	Kidney renal clear cell carcinoma
+CCLE_446 	SNU503	COAD	Colon adenocarcinoma
+CCLE_447 	NALM1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_448 	L428	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_449 	NUGC3	STAD	Stomach adenocarcinoma
+CCLE_450 	NCIH1048	LUSC	Lung squamous cell carcinoma
+CCLE_451 	BT20	BRCA	Breast invasive carcinoma
+CCLE_452 	TT	THCA	Thyroid carcinoma
+CCLE_453 	HEL	LCLL	Chronic Lymphocytic Leukemia
+CCLE_454 	KP4	PAAD	Pancreatic adenocarcinoma
+CCLE_455 	A101D	SKCM	Skin Cutaneous Melanoma
+CCLE_456 	NCIH2023	LUSC	Lung squamous cell carcinoma
+CCLE_457 	OVK18	OV	Ovarian serous cystadenocarcinoma
+CCLE_458 	59M	OV	Ovarian serous cystadenocarcinoma
+CCLE_459 	NCIH1930	LUSC	Lung squamous cell carcinoma
+CCLE_460 	UMUC1	BLCA	Bladder Urothelial Carcinoma
+CCLE_461 	SW480	COAD	Colon adenocarcinoma
+CCLE_462 	Calu3	LUSC	Lung squamous cell carcinoma
+CCLE_463 	HT1080	SARC	Sarcoma
+CCLE_464 	OVCAR8	OV	Ovarian serous cystadenocarcinoma
+CCLE_465 	U266B1	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_466 	JHUEM7	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_467 	KYSE140	ESCA	Esophageal carcinoma
+CCLE_468 	NCIH2452	LUSC	Lung squamous cell carcinoma
+CCLE_469 	COV434	OV	Ovarian serous cystadenocarcinoma
+CCLE_470 	A704	KIRC	Kidney renal clear cell carcinoma
+CCLE_471 	TYKnu	OV	Ovarian serous cystadenocarcinoma
+CCLE_472 	ECC10	STAD	Stomach adenocarcinoma
+CCLE_473 	TGBC11TKB	STAD	Stomach adenocarcinoma
+CCLE_474 	EBC1	LUSC	Lung squamous cell carcinoma
+CCLE_475 	TE8	ESCA	Esophageal carcinoma
+CCLE_476 	TOV21G	OV	Ovarian serous cystadenocarcinoma
+CCLE_477 	COV644	OV	Ovarian serous cystadenocarcinoma
+CCLE_478 	HEC6	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_479 	NCIH2291	LUSC	Lung squamous cell carcinoma
+CCLE_480 	HEC1B	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_481 	SUIT2	PAAD	Pancreatic adenocarcinoma
+CCLE_482 	NCIH196	LUSC	Lung squamous cell carcinoma
+CCLE_483 	PL21	LCLL	Chronic Lymphocytic Leukemia
+CCLE_484 	Caki1	KIRC	Kidney renal clear cell carcinoma
+CCLE_485 	NCIH82	LUSC	Lung squamous cell carcinoma
+CCLE_486 	G292,cloneA141B1	SARC	Sarcoma
+CCLE_487 	D283Med	LGG	Brain Lower Grade Glioma
+CCLE_488 	NCIH1694	LUSC	Lung squamous cell carcinoma
+CCLE_489 	SNUC2A	COAD	Colon adenocarcinoma
+CCLE_490 	OE33	ESCA	Esophageal carcinoma
+CCLE_491 	BxPC3	PAAD	Pancreatic adenocarcinoma
+CCLE_492 	UMUC3	BLCA	Bladder Urothelial Carcinoma
+CCLE_493 	BICR22	HNSC	Head and Neck squamous cell carcinoma
+CCLE_494 	PEER	LCLL	Chronic Lymphocytic Leukemia
+CCLE_495 	A4/Fuk	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_496 	CAL851	BRCA	Breast invasive carcinoma
+CCLE_497 	AML193	LCLL	Chronic Lymphocytic Leukemia
+CCLE_498 	HCC1500	BRCA	Breast invasive carcinoma
+CCLE_499 	Caov3	OV	Ovarian serous cystadenocarcinoma
+CCLE_500 	PK1	PAAD	Pancreatic adenocarcinoma
+CCLE_501 	Panc0813	PAAD	Pancreatic adenocarcinoma
+CCLE_502 	NIH:OVCAR3	OV	Ovarian serous cystadenocarcinoma
+CCLE_503 	UACC62	SKCM	Skin Cutaneous Melanoma
+CCLE_504 	NUDUL1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_505 	NCIH1755	LUSC	Lung squamous cell carcinoma
+CCLE_506 	QGP1	PAAD	Pancreatic adenocarcinoma
+CCLE_507 	CJM	SKCM	Skin Cutaneous Melanoma
+CCLE_508 	HLFa	LUSC	Lung squamous cell carcinoma
+CCLE_509 	YD15	HNSC	Head and Neck squamous cell carcinoma
+CCLE_510 	NCIH838	LUSC	Lung squamous cell carcinoma
+CCLE_511 	NCIH1963	LUSC	Lung squamous cell carcinoma
+CCLE_512 	HCC95	LUSC	Lung squamous cell carcinoma
+CCLE_513 	HSC4	HNSC	Head and Neck squamous cell carcinoma
+CCLE_514 	CORL279	LUSC	Lung squamous cell carcinoma
+CCLE_515 	A549	LUSC	Lung squamous cell carcinoma
+CCLE_516 	BT474	BRCA	Breast invasive carcinoma
+CCLE_517 	NCIH1944	LUSC	Lung squamous cell carcinoma
+CCLE_518 	HCC56	COAD	Colon adenocarcinoma
+CCLE_519 	Saos2	SARC	Sarcoma
+CCLE_520 	HLF	LIHC	Liver hepatocellular carcinoma
+CCLE_521 	Hs819T	SARC	Sarcoma
+CCLE_522 	LMSU	STAD	Stomach adenocarcinoma
+CCLE_523 	SF295	LGG	Brain Lower Grade Glioma
+CCLE_524 	MOLM16	LCLL	Chronic Lymphocytic Leukemia
+CCLE_525 	PC3	PRAD	Prostate adenocarcinoma
+CCLE_526 	NCIH1650	LUSC	Lung squamous cell carcinoma
+CCLE_527 	CAMA1	BRCA	Breast invasive carcinoma
+CCLE_528 	SW1417	COAD	Colon adenocarcinoma
+CCLE_529 	SKMEL28	SKCM	Skin Cutaneous Melanoma
+CCLE_530 	REC1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_531 	NOMO1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_532 	CCK81	COAD	Colon adenocarcinoma
+CCLE_533 	IPC298	SKCM	Skin Cutaneous Melanoma
+CCLE_534 	CA46	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_535 	LOUNH91	LUSC	Lung squamous cell carcinoma
+CCLE_536 	SW620	COAD	Colon adenocarcinoma
+CCLE_537 	SKM1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_538 	P12ICHIKAWA	LCLL	Chronic Lymphocytic Leukemia
+CCLE_539 	NCIH1618	LUSC	Lung squamous cell carcinoma
+CCLE_540 	ONCODG1	OV	Ovarian serous cystadenocarcinoma
+CCLE_541 	SCC4	HNSC	Head and Neck squamous cell carcinoma
+CCLE_542 	KE37	LCLL	Chronic Lymphocytic Leukemia
+CCLE_543 	FTC133	THCA	Thyroid carcinoma
+CCLE_544 	Hs746T	STAD	Stomach adenocarcinoma
+CCLE_545 	NCIH3255	LUSC	Lung squamous cell carcinoma
+CCLE_546 	G401	KIRC	Kidney renal clear cell carcinoma
+CCLE_547 	L33	PAAD	Pancreatic adenocarcinoma
+CCLE_548 	HOP62	LUSC	Lung squamous cell carcinoma
+CCLE_549 	LP1	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_550 	CAL62	THCA	Thyroid carcinoma
+CCLE_551 	J82	BLCA	Bladder Urothelial Carcinoma
+CCLE_552 	U87MG	LGG	Brain Lower Grade Glioma
+CCLE_553 	LUDLU1	LUSC	Lung squamous cell carcinoma
+CCLE_554 	EOL1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_555 	P31/FUJ	LCLL	Chronic Lymphocytic Leukemia
+CCLE_556 	Hs936T	SKCM	Skin Cutaneous Melanoma
+CCLE_557 	UACC257	SKCM	Skin Cutaneous Melanoma
+CCLE_558 	FTC238	THCA	Thyroid carcinoma
+CCLE_559 	SKCO1	COAD	Colon adenocarcinoma
+CCLE_560 	SNU1066	HNSC	Head and Neck squamous cell carcinoma
+CCLE_561 	NCIN87	STAD	Stomach adenocarcinoma
+CCLE_562 	HMC18	BRCA	Breast invasive carcinoma
+CCLE_563 	KARPAS299	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_564 	NCIH2227	LUSC	Lung squamous cell carcinoma
+CCLE_565 	PK45H	PAAD	Pancreatic adenocarcinoma
+CCLE_566 	JHH4	LIHC	Liver hepatocellular carcinoma
+CCLE_567 	JHOM2B	OV	Ovarian serous cystadenocarcinoma
+CCLE_568 	SH10TC	STAD	Stomach adenocarcinoma
+CCLE_569 	OCIAML3	LCLL	Chronic Lymphocytic Leukemia
+CCLE_570 	NCIH2106	LUSC	Lung squamous cell carcinoma
+CCLE_571 	NCIH28	LUSC	Lung squamous cell carcinoma
+CCLE_572 	Hs294T	SKCM	Skin Cutaneous Melanoma
+CCLE_573 	HuG1N	STAD	Stomach adenocarcinoma
+CCLE_574 	AN3CA	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_575 	KYSE270	ESCA	Esophageal carcinoma
+CCLE_576 	Hs870T	SARC	Sarcoma
+CCLE_577 	SNU349	KIRC	Kidney renal clear cell carcinoma
+CCLE_578 	SUDHL6	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_579 	RMUGS	OV	Ovarian serous cystadenocarcinoma
+CCLE_580 	TOV112D	OV	Ovarian serous cystadenocarcinoma
+CCLE_581 	NCIH2170	LUSC	Lung squamous cell carcinoma
+CCLE_582 	SUPM2	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_583 	WM88	SKCM	Skin Cutaneous Melanoma
+CCLE_584 	HEC50B	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_585 	LS1034	COAD	Colon adenocarcinoma
+CCLE_586 	D341Med	LGG	Brain Lower Grade Glioma
+CCLE_587 	NCIH1341	LUSC	Lung squamous cell carcinoma
+CCLE_588 	EPLC272H	LUSC	Lung squamous cell carcinoma
+CCLE_589 	SW1463	COAD	Colon adenocarcinoma
+CCLE_590 	KMM1	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_591 	K029AX	SKCM	Skin Cutaneous Melanoma
+CCLE_592 	TF1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_593 	WSUDLCL2	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_594 	KMS27	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_595 	PSN1	PAAD	Pancreatic adenocarcinoma
+CCLE_596 	SKNMC	LGG	Brain Lower Grade Glioma
+CCLE_597 	Hs944T	SKCM	Skin Cutaneous Melanoma
+CCLE_598 	JJN3	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_599 	NCIH2172	LUSC	Lung squamous cell carcinoma
+CCLE_600 	HEC59	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_601 	CFPAC1	PAAD	Pancreatic adenocarcinoma
+CCLE_602 	OV56	OV	Ovarian serous cystadenocarcinoma
+CCLE_603 	M07e	LCLL	Chronic Lymphocytic Leukemia
+CCLE_604 	AMO1	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_605 	RERFLCMS	LUSC	Lung squamous cell carcinoma
+CCLE_606 	MKN74	STAD	Stomach adenocarcinoma
+CCLE_607 	Malme3M	SKCM	Skin Cutaneous Melanoma
+CCLE_608 	Hs706T	SARC	Sarcoma
+CCLE_609 	JHOC5	OV	Ovarian serous cystadenocarcinoma
+CCLE_610 	LK2	LUSC	Lung squamous cell carcinoma
+CCLE_611 	NCIH1651	LUSC	Lung squamous cell carcinoma
+CCLE_612 	Calu1	LUSC	Lung squamous cell carcinoma
+CCLE_613 	HCC44	LUSC	Lung squamous cell carcinoma
+CCLE_614 	KYM1	SARC	Sarcoma
+CCLE_615 	NCIH2347	LUSC	Lung squamous cell carcinoma
+CCLE_616 	KP3	PAAD	Pancreatic adenocarcinoma
+CCLE_617 	Hs606T	BRCA	Breast invasive carcinoma
+CCLE_618 	Reh	LCLL	Chronic Lymphocytic Leukemia
+CCLE_619 	NCIH209	LUSC	Lung squamous cell carcinoma
+CCLE_620 	NCIH647	LUSC	Lung squamous cell carcinoma
+CCLE_621 	CORL47	LUSC	Lung squamous cell carcinoma
+CCLE_622 	HCC1171	LUSC	Lung squamous cell carcinoma
+CCLE_623 	SNU1033	COAD	Colon adenocarcinoma
+CCLE_624 	TE9	ESCA	Esophageal carcinoma
+CCLE_625 	HDMYZ	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_626 	OCIAML2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_627 	PC14	LUSC	Lung squamous cell carcinoma
+CCLE_628 	NCIH146	LUSC	Lung squamous cell carcinoma
+CCLE_629 	KMS26	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_630 	L363	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_631 	BV173	LCLL	Chronic Lymphocytic Leukemia
+CCLE_632 	HCC1599	BRCA	Breast invasive carcinoma
+CCLE_633 	CI1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_634 	KYSE30	ESCA	Esophageal carcinoma
+CCLE_635 	LN18	LGG	Brain Lower Grade Glioma
+CCLE_636 	SF268	LGG	Brain Lower Grade Glioma
+CCLE_637 	Panc0504	PAAD	Pancreatic adenocarcinoma
+CCLE_638 	MOLT16	LCLL	Chronic Lymphocytic Leukemia
+CCLE_639 	CMLT1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_640 	CORL23	LUSC	Lung squamous cell carcinoma
+CCLE_641 	EM2	LCLL	Chronic Lymphocytic Leukemia
+CCLE_642 	S117	THCA	Thyroid carcinoma
+CCLE_643 	LCLC97TM1	LUSC	Lung squamous cell carcinoma
+CCLE_644 	HCC1428	BRCA	Breast invasive carcinoma
+CCLE_645 	RH41	SARC	Sarcoma
+CCLE_646 	DMS153	LUSC	Lung squamous cell carcinoma
+CCLE_647 	NCIH2066	LUSC	Lung squamous cell carcinoma
+CCLE_648 	MCF7	BRCA	Breast invasive carcinoma
+CCLE_649 	GI1	LGG	Brain Lower Grade Glioma
+CCLE_650 	COLO829	SKCM	Skin Cutaneous Melanoma
+CCLE_651 	Raji	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_652 	A204	SARC	Sarcoma
+CCLE_653 	SW1116	COAD	Colon adenocarcinoma
+CCLE_654 	RL	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_655 	Hep3B217	LIHC	Liver hepatocellular carcinoma
+CCLE_656 	Hs834T	SKCM	Skin Cutaneous Melanoma
+CCLE_657 	FU97	STAD	Stomach adenocarcinoma
+CCLE_658 	G402	KIRC	Kidney renal clear cell carcinoma
+CCLE_659 	NCIH660	PRAD	Prostate adenocarcinoma
+CCLE_660 	TT	ESCA	Esophageal carcinoma
+CCLE_661 	KYSE520	ESCA	Esophageal carcinoma
+CCLE_662 	SW1271	LUSC	Lung squamous cell carcinoma
+CCLE_663 	RERFLCSq1	LUSC	Lung squamous cell carcinoma
+CCLE_664 	PE/CAPJ41(cloneD2)	HNSC	Head and Neck squamous cell carcinoma
+CCLE_665 	NALM6	LCLL	Chronic Lymphocytic Leukemia
+CCLE_666 	DMS79	LUSC	Lung squamous cell carcinoma
+CCLE_667 	SHP77	LUSC	Lung squamous cell carcinoma
+CCLE_668 	NMCG1	LGG	Brain Lower Grade Glioma
+CCLE_669 	AM38	LGG	Brain Lower Grade Glioma
+CCLE_670 	F36P	LCLL	Chronic Lymphocytic Leukemia
+CCLE_671 	SKMEL30	SKCM	Skin Cutaneous Melanoma
+CCLE_672 	HEL9217	LCLL	Chronic Lymphocytic Leukemia
+CCLE_673 	HARA	LUSC	Lung squamous cell carcinoma
+CCLE_674 	MELJUSO	SKCM	Skin Cutaneous Melanoma
+CCLE_675 	TE10	ESCA	Esophageal carcinoma
+CCLE_676 	MOLP2	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_677 	SKNFI	LGG	Brain Lower Grade Glioma
+CCLE_678 	OC314	OV	Ovarian serous cystadenocarcinoma
+CCLE_679 	Panc0213	PAAD	Pancreatic adenocarcinoma
+CCLE_680 	KARPAS422	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_681 	RS4;11	LCLL	Chronic Lymphocytic Leukemia
+CCLE_682 	KPNRTBM1	LGG	Brain Lower Grade Glioma
+CCLE_683 	COLO679	SKCM	Skin Cutaneous Melanoma
+CCLE_684 	8305C	THCA	Thyroid carcinoma
+CCLE_685 	SNU308	LIHC	Liver hepatocellular carcinoma
+CCLE_686 	HT29	COAD	Colon adenocarcinoma
+CCLE_687 	CORL95	LUSC	Lung squamous cell carcinoma
+CCLE_688 	ESS1	UCEC	Uterine Corpus Endometrioid Carcinoma
+CCLE_689 	MFE280	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_690 	SNU840	OV	Ovarian serous cystadenocarcinoma
+CCLE_691 	BICR31	HNSC	Head and Neck squamous cell carcinoma
+CCLE_692 	NCIH211	LUSC	Lung squamous cell carcinoma
+CCLE_693 	JHOS4	OV	Ovarian serous cystadenocarcinoma
+CCLE_694 	KP2	PAAD	Pancreatic adenocarcinoma
+CCLE_695 	SNU81	COAD	Colon adenocarcinoma
+CCLE_696 	HuT78	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_697 	CL34	COAD	Colon adenocarcinoma
+CCLE_698 	CAL27	HNSC	Head and Neck squamous cell carcinoma
+CCLE_699 	KPNYN	LGG	Brain Lower Grade Glioma
+CCLE_700 	GAMG	LGG	Brain Lower Grade Glioma
+CCLE_701 	EHEB	LCLL	Chronic Lymphocytic Leukemia
+CCLE_702 	HeyA8	OV	Ovarian serous cystadenocarcinoma
+CCLE_703 	HOS	SARC	Sarcoma
+CCLE_704 	OCILY19	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_705 	HCC1954	BRCA	Breast invasive carcinoma
+CCLE_706 	Hs822T	SARC	Sarcoma
+CCLE_707 	Hs172T	BLCA	Bladder Urothelial Carcinoma
+CCLE_708 	IM95	STAD	Stomach adenocarcinoma
+CCLE_709 	SW1990	PAAD	Pancreatic adenocarcinoma
+CCLE_710 	KATOIII	STAD	Stomach adenocarcinoma
+CCLE_711 	TE617T	SARC	Sarcoma
+CCLE_712 	T98G	LGG	Brain Lower Grade Glioma
+CCLE_713 	Hs888T	SARC	Sarcoma
+CCLE_714 	ISTMES1	LUSC	Lung squamous cell carcinoma
+CCLE_715 	MEC1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_716 	SUDHL5	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_717 	MOLT3	LCLL	Chronic Lymphocytic Leukemia
+CCLE_718 	JK1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_719 	SNU685	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_720 	SNU886	LIHC	Liver hepatocellular carcinoma
+CCLE_721 	DMS53	LUSC	Lung squamous cell carcinoma
+CCLE_722 	CORL24	LUSC	Lung squamous cell carcinoma
+CCLE_723 	L1236	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_724 	SW948	COAD	Colon adenocarcinoma
+CCLE_725 	MKN45	STAD	Stomach adenocarcinoma
+CCLE_726 	697	LCLL	Chronic Lymphocytic Leukemia
+CCLE_727 	SNU878	LIHC	Liver hepatocellular carcinoma
+CCLE_728 	KG1C	LGG	Brain Lower Grade Glioma
+CCLE_729 	IALM	LUSC	Lung squamous cell carcinoma
+CCLE_730 	NCIH2009	LUSC	Lung squamous cell carcinoma
+CCLE_731 	SKMEL31	SKCM	Skin Cutaneous Melanoma
+CCLE_732 	SCC9	HNSC	Head and Neck squamous cell carcinoma
+CCLE_733 	SNU245	LIHC	Liver hepatocellular carcinoma
+CCLE_734 	KNS81	LGG	Brain Lower Grade Glioma
+CCLE_735 	NCIH1563	LUSC	Lung squamous cell carcinoma
+CCLE_736 	SEM	LCLL	Chronic Lymphocytic Leukemia
+CCLE_737 	CL14	COAD	Colon adenocarcinoma
+CCLE_738 	NCIH2029	LUSC	Lung squamous cell carcinoma
+CCLE_739 	SKLMS1	SARC	Sarcoma
+CCLE_740 	HT	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_741 	TCCPAN2	PAAD	Pancreatic adenocarcinoma
+CCLE_742 	TE6	ESCA	Esophageal carcinoma
+CCLE_743 	Hs578T	BRCA	Breast invasive carcinoma
+CCLE_744 	VMCUB1	BLCA	Bladder Urothelial Carcinoma
+CCLE_745 	NCIH1184	LUSC	Lung squamous cell carcinoma
+CCLE_746 	JHOM1	OV	Ovarian serous cystadenocarcinoma
+CCLE_747 	EFE184	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_748 	HOP62v1	STAD	Stomach adenocarcinoma
+CCLE_749 	LNCaPcloneFGC	PRAD	Prostate adenocarcinoma
+CCLE_750 	BICR6	HNSC	Head and Neck squamous cell carcinoma
+CCLE_751 	Capan1	PAAD	Pancreatic adenocarcinoma
+CCLE_752 	MDAMB231	BRCA	Breast invasive carcinoma
+CCLE_753 	T3M10	LUSC	Lung squamous cell carcinoma
+CCLE_754 	OVSAHO	OV	Ovarian serous cystadenocarcinoma
+CCLE_755 	NCIH1395	LUSC	Lung squamous cell carcinoma
+CCLE_756 	Sq1	LUSC	Lung squamous cell carcinoma
+CCLE_757 	A172	LGG	Brain Lower Grade Glioma
+CCLE_758 	YD38	HNSC	Head and Neck squamous cell carcinoma
+CCLE_759 	BDCM	LCLL	Chronic Lymphocytic Leukemia
+CCLE_760 	KU1919	BLCA	Bladder Urothelial Carcinoma
+CCLE_761 	HCT15	COAD	Colon adenocarcinoma
+CCLE_762 	NCIH2081	LUSC	Lung squamous cell carcinoma
+CCLE_763 	SNU1079	LIHC	Liver hepatocellular carcinoma
+CCLE_764 	GMS10	LGG	Brain Lower Grade Glioma
+CCLE_765 	CAL29	BLCA	Bladder Urothelial Carcinoma
+CCLE_766 	SNU407	COAD	Colon adenocarcinoma
+CCLE_767 	TUHR4TKB	KIRC	Kidney renal clear cell carcinoma
+CCLE_768 	MDAMB453	BRCA	Breast invasive carcinoma
+CCLE_769 	SNU324	PAAD	Pancreatic adenocarcinoma
+CCLE_770 	YD10B	HNSC	Head and Neck squamous cell carcinoma
+CCLE_771 	SW579	THCA	Thyroid carcinoma
+CCLE_772 	SCC25	HNSC	Head and Neck squamous cell carcinoma
+CCLE_773 	COLO201	COAD	Colon adenocarcinoma
+CCLE_774 	HCC70	BRCA	Breast invasive carcinoma
+CCLE_775 	SNU1	STAD	Stomach adenocarcinoma
+CCLE_776 	KELLY	LGG	Brain Lower Grade Glioma
+CCLE_777 	EN	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_778 	KMS21BM	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_779 	RCM1	COAD	Colon adenocarcinoma
+CCLE_780 	SNU601	STAD	Stomach adenocarcinoma
+CCLE_781 	SBC5	LUSC	Lung squamous cell carcinoma
+CCLE_782 	DM3	LUSC	Lung squamous cell carcinoma
+CCLE_783 	FUOV1	OV	Ovarian serous cystadenocarcinoma
+CCLE_784 	MDAMB134VI	BRCA	Breast invasive carcinoma
+CCLE_785 	HCC2108	LUSC	Lung squamous cell carcinoma
+CCLE_786 	BEN	LUSC	Lung squamous cell carcinoma
+CCLE_787 	OE21	ESCA	Esophageal carcinoma
+CCLE_788 	SKMEL1	SKCM	Skin Cutaneous Melanoma
+CCLE_789 	HL60	LCLL	Chronic Lymphocytic Leukemia
+CCLE_790 	NCIH1436	LUSC	Lung squamous cell carcinoma
+CCLE_791 	TE1	ESCA	Esophageal carcinoma
+CCLE_792 	SNU175	COAD	Colon adenocarcinoma
+CCLE_793 	Panc0403	PAAD	Pancreatic adenocarcinoma
+CCLE_794 	MOR/CPR	LUSC	Lung squamous cell carcinoma
+CCLE_795 	HPAC	PAAD	Pancreatic adenocarcinoma
+CCLE_796 	OCIAML5	LCLL	Chronic Lymphocytic Leukemia
+CCLE_797 	SW1783	LGG	Brain Lower Grade Glioma
+CCLE_798 	HCC33	LUSC	Lung squamous cell carcinoma
+CCLE_799 	RCC10RGB	KIRC	Kidney renal clear cell carcinoma
+CCLE_800 	NCIH2228	LUSC	Lung squamous cell carcinoma
+CCLE_801 	DMS454	LUSC	Lung squamous cell carcinoma
+CCLE_802 	CAL120	BRCA	Breast invasive carcinoma
+CCLE_803 	SNU1076	HNSC	Head and Neck squamous cell carcinoma
+CCLE_804 	YKG1	LGG	Brain Lower Grade Glioma
+CCLE_805 	CAL148	BRCA	Breast invasive carcinoma
+CCLE_806 	786O	KIRC	Kidney renal clear cell carcinoma
+CCLE_807 	COLO792	SKCM	Skin Cutaneous Melanoma
+CCLE_808 	WM1799	SKCM	Skin Cutaneous Melanoma
+CCLE_809 	A2780	OV	Ovarian serous cystadenocarcinoma
+CCLE_810 	SNU626	LGG	Brain Lower Grade Glioma
+CCLE_811 	KG1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_812 	KYSE70	ESCA	Esophageal carcinoma
+CCLE_813 	SNU119	OV	Ovarian serous cystadenocarcinoma
+CCLE_814 	HT55	COAD	Colon adenocarcinoma
+CCLE_815 	OSRC2	KIRC	Kidney renal clear cell carcinoma
+CCLE_816 	JHUEM3	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_817 	RPMI8226	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_818 	KYSE150	ESCA	Esophageal carcinoma
+CCLE_819 	HSC3	HNSC	Head and Neck squamous cell carcinoma
+CCLE_820 	DV90	LUSC	Lung squamous cell carcinoma
+CCLE_821 	ECC12	STAD	Stomach adenocarcinoma
+CCLE_822 	Hs683	LGG	Brain Lower Grade Glioma
+CCLE_823 	8MGBA	LGG	Brain Lower Grade Glioma
+CCLE_824 	SKOV3	OV	Ovarian serous cystadenocarcinoma
+CCLE_825 	NCIH524	LUSC	Lung squamous cell carcinoma
+CCLE_826 	U937	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_827 	KMS28BM	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_828 	SNU520	STAD	Stomach adenocarcinoma
+CCLE_829 	MeWo	SKCM	Skin Cutaneous Melanoma
+CCLE_830 	NCIH661	LUSC	Lung squamous cell carcinoma
+CCLE_831 	SW1710	BLCA	Bladder Urothelial Carcinoma
+CCLE_832 	Hs618T	LUSC	Lung squamous cell carcinoma
+CCLE_833 	HuCCT1	LIHC	Liver hepatocellular carcinoma
+CCLE_834 	OPM2	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_835 	NCIH2126	LUSC	Lung squamous cell carcinoma
+CCLE_836 	Hs852T	SKCM	Skin Cutaneous Melanoma
+CCLE_837 	EKVXv1	STAD	Stomach adenocarcinoma
+CCLE_838 	SW837	COAD	Colon adenocarcinoma
+CCLE_839 	NCIH1385	LUSC	Lung squamous cell carcinoma
+CCLE_840 	EJM	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_841 	PE/CAPJ49	HNSC	Head and Neck squamous cell carcinoma
+CCLE_842 	Hs821T	SARC	Sarcoma
+CCLE_843 	MDST8	COAD	Colon adenocarcinoma
+CCLE_844 	JeKo1	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_845 	set-02	LCLL	Chronic Lymphocytic Leukemia
+CCLE_846 	RT112	BLCA	Bladder Urothelial Carcinoma
+CCLE_847 	KNS42	LGG	Brain Lower Grade Glioma
+CCLE_848 	RERFLCKJ	LUSC	Lung squamous cell carcinoma
+CCLE_849 	DANG	PAAD	Pancreatic adenocarcinoma
+CCLE_850 	HCC1187	BRCA	Breast invasive carcinoma
+CCLE_851 	Pfeiffer	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_852 	Hs729	SARC	Sarcoma
+CCLE_853 	SW1088	LGG	Brain Lower Grade Glioma
+CCLE_854 	KMRC1	KIRC	Kidney renal clear cell carcinoma
+CCLE_855 	SUPT11	LCLL	Chronic Lymphocytic Leukemia
+CCLE_856 	COLO800	SKCM	Skin Cutaneous Melanoma
+CCLE_857 	KYSE510	ESCA	Esophageal carcinoma
+CCLE_858 	TUHR14TKB	KIRC	Kidney renal clear cell carcinoma
+CCLE_859 	SNUC1	COAD	Colon adenocarcinoma
+CCLE_860 	GDM1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_861 	COLO668	LUSC	Lung squamous cell carcinoma
+CCLE_862 	SKES1	SARC	Sarcoma
+CCLE_863 	GRANTA519	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_864 	NCIH508	COAD	Colon adenocarcinoma
+CCLE_865 	NCIH1355	LUSC	Lung squamous cell carcinoma
+CCLE_866 	TALL1	LCLL	Chronic Lymphocytic Leukemia
+CCLE_867 	5637	BLCA	Bladder Urothelial Carcinoma
+CCLE_868 	HuNS1	MM	Multiple Myeloma Plasma cell leukemia
+CCLE_869 	SNU719	STAD	Stomach adenocarcinoma
+CCLE_870 	HOP92	LUSC	Lung squamous cell carcinoma
+CCLE_871 	LN229	LGG	Brain Lower Grade Glioma
+CCLE_872 	MDAMB361	BRCA	Breast invasive carcinoma
+CCLE_873 	Hs939T	SKCM	Skin Cutaneous Melanoma
+CCLE_874 	MJ	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_875 	CL40	COAD	Colon adenocarcinoma
+CCLE_876 	OVCAR4	OV	Ovarian serous cystadenocarcinoma
+CCLE_877 	NCIH520	LUSC	Lung squamous cell carcinoma
+CCLE_878 	HCC1569	BRCA	Breast invasive carcinoma
+CCLE_879 	SNU410	PAAD	Pancreatic adenocarcinoma
+CCLE_880 	MC116	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_881 	JHH5	LIHC	Liver hepatocellular carcinoma
+CCLE_882 	RD	SARC	Sarcoma
+CCLE_883 	SNU387	LIHC	Liver hepatocellular carcinoma
+CCLE_884 	KE97	STAD	Stomach adenocarcinoma
+CCLE_885 	BHT101	THCA	Thyroid carcinoma
+CCLE_886 	SW780	BLCA	Bladder Urothelial Carcinoma
+CCLE_887 	TCCSUP	BLCA	Bladder Urothelial Carcinoma
+CCLE_888 	NCIH1623	LUSC	Lung squamous cell carcinoma
+CCLE_889 	NCIH747	COAD	Colon adenocarcinoma
+CCLE_890 	Hs742T	BRCA	Breast invasive carcinoma
+CCLE_891 	WM2664	SKCM	Skin Cutaneous Melanoma
+CCLE_892 	NCIH23	LUSC	Lung squamous cell carcinoma
+CCLE_893 	BICR56	HNSC	Head and Neck squamous cell carcinoma
+CCLE_894 	Hs600T	SKCM	Skin Cutaneous Melanoma
+CCLE_895 	COLO741	COAD	Colon adenocarcinoma
+CCLE_896 	KYSE410	ESCA	Esophageal carcinoma
+CCLE_897 	COLO684	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_898 	HPBALL	LCLL	Chronic Lymphocytic Leukemia
+CCLE_899 	KURAMOCHI	OV	Ovarian serous cystadenocarcinoma
+CCLE_900 	TC71	SARC	Sarcoma
+CCLE_901 	KYSE450	ESCA	Esophageal carcinoma
+CCLE_902 	SNU1077	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_903 	T47D	BRCA	Breast invasive carcinoma
+CCLE_904 	COV318	OV	Ovarian serous cystadenocarcinoma
+CCLE_905 	Hs766T	PAAD	Pancreatic adenocarcinoma
+CCLE_906 	RDES	SARC	Sarcoma
+CCLE_907 	Hs281T	BRCA	Breast invasive carcinoma
+CCLE_908 	COLO783	SKCM	Skin Cutaneous Melanoma
+CCLE_909 	KLE	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_910 	NB4	LCLL	Chronic Lymphocytic Leukemia
+CCLE_911 	Panc1005	PAAD	Pancreatic adenocarcinoma
+CCLE_912 	NCIH2087	LUSC	Lung squamous cell carcinoma
+CCLE_913 	LC1F	LUSC	Lung squamous cell carcinoma
+CCLE_914 	NCIH1092	LUSC	Lung squamous cell carcinoma
+CCLE_915 	NCIH854	LUSC	Lung squamous cell carcinoma
+CCLE_916 	Mino	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_917 	HT144	SKCM	Skin Cutaneous Melanoma
+CCLE_918 	M059K	LGG	Brain Lower Grade Glioma
+CCLE_919 	Hs343T	BRCA	Breast invasive carcinoma
+CCLE_920 	NCIH1793	LUSC	Lung squamous cell carcinoma
+CCLE_921 	HCC1833	LUSC	Lung squamous cell carcinoma
+CCLE_922 	PE/CAPJ34(cloneC12)	HNSC	Head and Neck squamous cell carcinoma
+CCLE_923 	OE19	ESCA	Esophageal carcinoma
+CCLE_924 	KNS60	LGG	Brain Lower Grade Glioma
+CCLE_925 	MDAMB157	BRCA	Breast invasive carcinoma
+CCLE_926 	HEC151	CESC	Cervical squamous cell carcinoma and endocervical adenocarcinoma
+CCLE_927 	NCIH69	LUSC	Lung squamous cell carcinoma
+CCLE_928 	SKMEL3	SKCM	Skin Cutaneous Melanoma
+CCLE_929 	SKNBE(2)	LGG	Brain Lower Grade Glioma
+CCLE_930 	GA10	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_931 	SNU869	LIHC	Liver hepatocellular carcinoma
+CCLE_932 	SW403	COAD	Colon adenocarcinoma
+CCLE_933 	CW2	COAD	Colon adenocarcinoma
+CCLE_934 	DOHH2	DLBC	Lymphoid Neoplasm Diffuse Large B-cell Lymphoma
+CCLE_935 	NCIH441	LUSC	Lung squamous cell carcinoma
