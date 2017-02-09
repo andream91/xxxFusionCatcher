@@ -8,7 +8,7 @@ from django.http import HttpResponse
 def search_for_cell_line(request,c_line):
     response = {}
     header = get_header()
-    get_cell_line_from_disease("Colon adenocarcinoma")    
+    #get_cell_line_from_disease("Colon adenocarcinoma")    
     # recupero fusioni nella linea cellulare
     fusions = []
     #se per tutte le linee cellulari mostra tutte le fusioni
@@ -445,7 +445,7 @@ def search_viruses(request,c_line,vir):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
         
-def generate_statistics(request):
+def old_generate_statistics(request):
     pairs = {CellLine:('CellLine','cell_line'),Fusion:('Fusion','fusion_id'),Chromosome:('Chromosome','chromosome'),Gene:('Gene','symbol') }
     for node1,node_data1 in pairs.items():
         for node2,node_data2 in pairs.items():
@@ -459,13 +459,64 @@ def generate_statistics(request):
                     writer.writerow([node_data1[0],node_data2[0]])
                     for x in node1.nodes.all():
                         #query = "match (x:"+node_data1[0])-[*..2]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
-                        query = "match (x:"+node_data1[0]+"{"+node_data1[1]+":'"+str(eval("x."+str(node_data1[1])))+"'})-[*..2]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
+                        query = "match (x:"+node_data1[0]+"{"+node_data1[1]+":'"+str(eval("x."+str(node_data1[1])))+"'})-[*..1]-(y:"+str(node_data2[0])+") return x, count(distinct y)"
                         if(db.cypher_query(query)[0]): #ho la linea cellulare vuota, machecazz?
                             #print([db.cypher_query(query)[0][0][0].properties[eval("'"+node_data1[1]+"'")],db.cypher_query(query)[0][0][1]])
                             writer.writerow([db.cypher_query(query)[0][0][0].properties[eval("'"+node_data1[1]+"'")],db.cypher_query(query)[0][0][1]])
                     file.close() 
         
     return HttpResponse()
+    
+def generate_statistics(request):
+    cellLine_gene = {(('CellLine','cell_line'),('Gene','symbol')):[[CellLine,'HAPPEN',Fusion,'HAD',Gene],[CellLine,'HAPPEN',Fusion,'WITH',Gene]]}
+    cellLine_chromosome = {(('CellLine','cell_line'),('Chromosome','chromosome')):[[CellLine,'HAPPEN',Fusion,'AT_CHROMOSOME',Chromosome]]}
+    cellLine_fusion = {(('CellLine','cell_line'),('Fusion','fusion_id')):[[CellLine,'HAPPEN',Fusion]]}
+    chromosome_cellLine = {(('Chromosome','chromosome'),('CellLine','cell_line')):[[Chromosome,'AT_CHROMOSOME',Fusion,'HAPPEN',CellLine]]}
+    chromosome_fusion = {(('Chromosome','chromosome'),('Fusion','fusion_id')):[[Chromosome,'AT_CHROMOSOME',Fusion]]}
+    chromosome_gene = {(('Chromosome','chromosome'),('Gene','symbol')):[[Chromosome,'OF_GENE',Gene]]}
+    gene_cellLine = {(('Gene','symbol'),('CellLine','cell_line')):[[Gene,'HAD',Fusion,'HAPPEN',CellLine],[Gene,'WITH',Fusion,'HAPPEN',CellLine]]}
+    gene_chromosome = {(('Gene','symbol'),('Chromosome','chromosome')):[[Gene,'AT_CHROMOSOME',Chromosome]]}
+    gene_fusion = {(('Gene','symbol'),('Fusion','fusion_id')):[[Gene,'HAD',Fusion],[Gene,'WITH',Fusion]]}
+    
+    stats = [cellLine_gene, cellLine_chromosome, cellLine_fusion, chromosome_cellLine,chromosome_fusion, chromosome_gene, gene_cellLine, gene_chromosome, gene_fusion]
+    for pair in stats:
+        gen_stat_file(pair)
+    #gen_stat_file(gene_cellLine)
+    
+    return HttpResponse()    
+    
+def gen_stat_file(pairs):
+    ids = list(pairs.keys())[0]
+    paths = list(pairs.values())
+    paths = paths[0]
+    #print(ids)
+    #print(paths)
+    startnode = paths[0][0]
+    #print(startnode)
+    file =  open(ids[0][0]+'_'+ids[1][0]+'.csv','w')
+    writer = csv.writer(file, lineterminator='\n')
+    writer.writerow([ids[0][0],ids[1][0]])
+    for x in startnode.nodes.all():
+        print(x)
+        nodes = {}
+        for path in paths:
+            #print(path)
+            #print(len(path))
+            query = "match (" + path[0].__name__ + "{"+ids[0][1]+":'"+eval("x."+ids[0][1])+"'})-"
+            for i in range(1,len(path)-2,2):
+                query = query + "[:" +  path[i] + "]-(" + path[i+1].__name__ + ")-" 
+                #print(path[i+1])
+            query = query + "[:" + path[len(path)-2] + "]-(a:" + path[(len(path)-1)].__name__+") return distinct a"
+            #print(query)
+            if(db.cypher_query(query)[0]):
+                for row in db.cypher_query(query)[0]:
+                    #print(row[0].properties[eval("'"+ids[1][1]+"'")])
+                    if row[0].properties[eval("'"+ids[1][1]+"'")] not in nodes:
+                        #print(row[1].properties[eval("'"+ids[1][1]+"'")])
+                        nodes[row[0].properties[eval("'"+ids[1][1]+"'")]] = row[0].properties[eval("'"+ids[1][1]+"'")]
+        #print(len(nodes))
+        writer.writerow([eval("x."+ids[0][1]),len(nodes)])
+    file.close()
     
 def get_ccle_infos():
     header = ["ID","Cell Line","Disease","Disease name"]
