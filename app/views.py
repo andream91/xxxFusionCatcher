@@ -20,13 +20,49 @@ def search_for_cell_line(request,c_line):
     else:
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             fusions.append(fusion)
+    #print(fusions)
+    rows = build_rows(fusions)
+    #print(rows)
+    response['rows'] = {"header": header, "items": rows}
+    return HttpResponse(json.dumps(response))
+
+def search_for_chromosome(request,c_line,chromos):
+    response = {}
+    header = get_header()
+    
+    # recupero fusioni nella linea cellulare
+    fusions = []
+    #se ho specificato solo il cromosoma, cerco tutte le fusioni in tutte le linee cellulari che coinvolgono il cromosoma
+    if c_line == "ALL" and chromos != "":
+        c = Chromosome.nodes.get(chromosome = chromos)
+        #for fcfusion in c.fromFCFusiontoChromosome:
+        #    for fusion in fcfusion.fromFusionToFusionCatcher:
+        #        fusions.append(fusion)
+        #print(c.fromFCFusiontoChromosome[0])
+
+        print(c.fromESFusiontoChromosome)
+        
+        #for esfusion in c.fromESFusiontoChromosome:
+        #    print("BOH")
+            #for fusion in esfusion.fromFusionToEricScript:
+            #    fusions.append(fusion)
+    #se ho specificato solo la linea cellulare, cerco tutte le fusioni che avvengono in uqella linea cellulare nel determinato intervallo
+    #elif c_line != "" and chromos == "":
+    #    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+    #            fusions.append(fusion)
+    #se ho sia linea cellulare che cromosoma specificati, cerco tutte le fusioni nella linea cellulare che coinvolgono il cromosoma
+    #elif c_line != "" and chromos != "":
+    #    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+    #            if fusion.at_chromosome.filter(chromosome__exact=chromos):
+    #                fusions.append(fusion)
     
     rows = build_rows(fusions)
     #print(rows)
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_chromosome(request,c_line,chromos,start_point,end_point):
+
+def OLD_search_for_chromosome(request,c_line,chromos,start_point,end_point):
     response = {}
     header = get_header()
     
@@ -51,7 +87,7 @@ def search_for_chromosome(request,c_line,chromos,start_point,end_point):
                     fusions.append(fusion)
     
     rows = build_rows(fusions)
-    print(rows)
+    #print(rows)
     
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
@@ -145,7 +181,7 @@ def search_for_gene(request,c_line,gene_one,gene_two):
                 fusions.append(fusion)
             
     rows = build_rows(fusions)
-    print(rows)
+    #print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
@@ -186,7 +222,7 @@ def search_for_exon(request,c_line,exon_one,exon_two):
                     fusions.append(fusion)
 
     rows = build_rows(fusions)
-    print(rows)
+    #print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
@@ -228,7 +264,7 @@ def search_for_transcript(request,c_line,transcript_one,transcript_two):
         
 
     rows = build_rows(fusions)
-    print(rows)
+    #print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
@@ -340,18 +376,42 @@ def search_for_fusion_information(request,c_line,algorithm,fusion_description,pr
                 fusions.append(fusion)
 
     rows = build_rows(fusions)
-    print(rows)
+    #print(rows)
 
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
 def build_rows(fusions):
+    rows = []
+    
+    for myfusion in fusions:
+        # recupero dati cell line
+        cellLine = myfusion.fromCellLineToFusion.all()[0].cell_line
+        disease = ""
+        acronym = ""
+        ccle_infos = get_ccle_infos()
+        for row in ccle_infos:
+            if cellLine in row:
+                disease = row[3]
+                acronym = row[2]
+        #recupero dati dai geni
+        gene1 = myfusion.fromGeneToFusion.all()[0]
+        gene2 = myfusion.with_gene.all()[0]
+       
+        rows.append([disease,acronym,cellLine,gene1.symbol,gene2.symbol])
+       
+    #print(rows)   
+    return rows
+
+
+
+def build_fc_rows(fusions):
     
     rows = []
     # ora che ho solo le fusioni interessate recupero le informazioni e mi costruisco la riga
     for myfusion in fusions:
         # recupero cell line
-        cellLine = myfusion.fromFusionToCellLine.all()[0].cell_line
+        cellLine = myfusion.fromCellLineToFusion.all()[0].cell_line
         
         #recupero dati dai geni
         gene1 = myfusion.fromGeneToFusion.all()[0]
@@ -533,8 +593,17 @@ def get_ccle_infos():
     #response['rows'] = {"header": header, "items": rows}
 
     return rows
-    
+
 def get_header():
+    return ["Cancer",
+            "Acronym",
+            "CCLE",
+            "Gene 1",
+            "Gene 2",
+            "Fusion Catcher",
+            "Ericscript"]
+    
+def get_fc_header():
     return ["Cell line",
         "Gene pair symbols",
         "Gene pair EnsIDs",
