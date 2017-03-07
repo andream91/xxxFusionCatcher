@@ -33,28 +33,19 @@ def search_for_chromosome(request,c_line,chromos):
     # recupero fusioni nella linea cellulare
     fusions = []
     #se ho specificato solo il cromosoma, cerco tutte le fusioni in tutte le linee cellulari che coinvolgono il cromosoma
-    if c_line == "ALL" and chromos != "":
+    if c_line == "ALL" and chromos != "ALL":
         c = Chromosome.nodes.get(chromosome = chromos)
-        #for fcfusion in c.fromFCFusiontoChromosome:
-        #    for fusion in fcfusion.fromFusionToFusionCatcher:
-        #        fusions.append(fusion)
-        #print(c.fromFCFusiontoChromosome[0])
-
-        print(c.fromESFusiontoChromosome)
-        
-        #for esfusion in c.fromESFusiontoChromosome:
-        #    print("BOH")
-            #for fusion in esfusion.fromFusionToEricScript:
-            #    fusions.append(fusion)
+        for fusion in c.fromFusiontoChromosome:
+            fusions.append(fusion)
     #se ho specificato solo la linea cellulare, cerco tutte le fusioni che avvengono in uqella linea cellulare nel determinato intervallo
-    #elif c_line != "" and chromos == "":
-    #    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-    #            fusions.append(fusion)
+    elif c_line != "ALL" and chromos == "ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            fusions.append(fusion)
     #se ho sia linea cellulare che cromosoma specificati, cerco tutte le fusioni nella linea cellulare che coinvolgono il cromosoma
-    #elif c_line != "" and chromos != "":
-    #    for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-    #            if fusion.at_chromosome.filter(chromosome__exact=chromos):
-    #                fusions.append(fusion)
+    elif c_line != "ALL" and chromos != "ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion.at_chromosome.filter(chromosome__exact=chromos):
+                fusions.append(fusion)
     
     rows = build_rows(fusions)
     #print(rows)
@@ -100,9 +91,9 @@ def search_for_gene(request,c_line,gene_one,gene_two):
     fusions = []
     
     #se ho specificato il gene ma non la linea cellulare, mostro tutte le fusioni che coinvolgono il gene
-    if c_line == "ALL" and gene_one != "" and gene_two == "":
+    if c_line == "ALL" and gene_one != "ALL" and gene_two == "ALL":
         if "ENSG" in gene_one:
-            g = Gene.nodes.get(gene_id = gene_one)
+            g = Gene.nodes.get(ensid = gene_one)
             if g.had:
                 for fusion in g.had:
                     fusions.append(fusion)
@@ -117,21 +108,21 @@ def search_for_gene(request,c_line,gene_one,gene_two):
             if g.fromFusionToGene:
                 for fusion in g.fromFusionToGene:
                     fusions.append(fusion)
-    elif c_line == "ALL" and gene_one != "" and gene_two != "":
+    elif c_line == "ALL" and gene_one != "ALL" and gene_two != "ALL":
         if "ENSG" in gene_one and "ENSG" in gene_two:
-            g = Gene.nodes.get(gene_id = gene_one)
+            g = Gene.nodes.get(ensid = gene_one)
             if g.had:
                 for fusion in g.had: 
-                    if fusion.with_gene.all()[0].gene_id == gene_two:
+                    if fusion.with_gene.all()[0].ensid == gene_two:
                         fusions.append(fusion)
         
-            g = Gene.nodes.get(gene_id = gene_two)
+            g = Gene.nodes.get(ensid = gene_two)
             if g.had:
                 for fusion in g.had: 
-                    if fusion.with_gene.all()[0].gene_id == gene_one:
+                    if fusion.with_gene.all()[0].ensid == gene_one:
                         fusions.append(fusion)
         elif "ENSG" in gene_one and "ENSG" not in gene_two:
-            g = Gene.nodes.get(gene_id = gene_one)
+            g = Gene.nodes.get(ensid = gene_one)
             if g.had:
                 for fusion in g.had: 
                     if fusion.with_gene.all()[0].symbol == gene_two:
@@ -140,16 +131,16 @@ def search_for_gene(request,c_line,gene_one,gene_two):
             g = Gene.nodes.get(symbol = gene_two)
             if g.had:
                 for fusion in g.had: 
-                    if fusion.with_gene.all()[0].gene_id == gene_one:
+                    if fusion.with_gene.all()[0].ensid == gene_one:
                         fusions.append(fusion)
         elif "ENSG" not in gene_one and "ENSG" in gene_two:
             g = Gene.nodes.get(symbol = gene_one)
             if g.had:
                 for fusion in g.had: 
-                    if fusion.with_gene.all()[0].gene_id == gene_two:
+                    if fusion.with_gene.all()[0].ensid == gene_two:
                         fusions.append(fusion)
         
-            g = Gene.nodes.get(gene_id = gene_two)
+            g = Gene.nodes.get(ensid = gene_two)
             if g.had:
                 for fusion in g.had: 
                     if fusion.with_gene.all()[0].symbol == gene_one:
@@ -167,17 +158,17 @@ def search_for_gene(request,c_line,gene_one,gene_two):
                     if fusion.with_gene.all()[0].symbol == gene_one:
                         fusions.append(fusion)    
     #se ho specificato la linea cellulare ma non il gene, mostro tutte le fusioni per quella linea cellulare (ANALOGO A SEARCH FOR CELL_LINE)
-    elif c_line != "ALL" and gene_one == "" and gene_two == "":
+    elif c_line != "ALL" and gene_one == "ALL" and gene_two == "ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             fusions.append(fusion)     
     #se ho specificato sia la linea cellulare che il gene, cerco tutte le fusioni che coinvolgono quel gene nella linea cellulare
-    elif c_line != "ALL" and gene_one != "" and gene_two == "":
+    elif c_line != "ALL" and gene_one != "ALL" and gene_two == "ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            if fusion.fromGeneToFusion.filter(symbol__exact=gene_one) or fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) or fusion.with_gene.filter(symbol__exact=gene_one) or fusion.with_gene.filter(gene_id__exact=gene_one):
+            if fusion.fromGeneToFusion.filter(symbol__exact=gene_one) or fusion.fromGeneToFusion.filter(ensid__exact=gene_one) or fusion.with_gene.filter(symbol__exact=gene_one) or fusion.with_gene.filter(ensid__exact=gene_one): #PROBLEMA
                 fusions.append(fusion)
-    elif c_line != "ALL" and gene_one != "" and gene_two != "":
+    elif c_line != "ALL" and gene_one != "ALL" and gene_two != "ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
-            if (fusion.fromGeneToFusion.filter(symbol__exact=gene_one) and fusion.with_gene.filter(symbol__exact=gene_two)) or (fusion.fromGeneToFusion.filter(symbol__exact=gene_two) and fusion.with_gene.filter(symbol__exact=gene_one)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_one) and fusion.with_gene.filter(gene_id__exact=gene_two)) or (fusion.fromGeneToFusion.filter(gene_id__exact=gene_two) and fusion.with_gene.filter(gene_id__exact=gene_one)):
+            if (fusion.fromGeneToFusion.filter(symbol__exact=gene_one) and fusion.with_gene.filter(symbol__exact=gene_two)) or (fusion.fromGeneToFusion.filter(symbol__exact=gene_two) and fusion.with_gene.filter(symbol__exact=gene_one)) or (fusion.fromGeneToFusion.filter(ensid__exact=gene_one) and fusion.with_gene.filter(ensid__exact=gene_two)) or (fusion.fromGeneToFusion.filter(ensid__exact=gene_two) and fusion.with_gene.filter(ensid__exact=gene_one)): #PROBLEMA
                 fusions.append(fusion)
             
     rows = build_rows(fusions)
@@ -196,32 +187,34 @@ def search_for_exon(request,c_line,exon_one,exon_two):
     fusions = []
     
     #cell_line all, primo esone si, secondo esone no, tutte le fusioni che coinvolgono questo esone
-    if c_line == "ALL" and exon_one!="" and exon_two == "":
+    if c_line == "ALL" and exon_one!="ALL" and exon_two == "ALL":
         e = Exon.nodes.get(exon = exon_one)
-        for fusion in e.fromFusionToExon:
-            fusions.append(fusion)
-    #cell_line all, primo esone si, secondo esone si (011), tutte le fusioni che convolgono la coppia di esoni
-    elif c_line == "ALL" and exon_one!="" and exon_two!="":
-        e = Exon.nodes.get(exon = exon_one)
-        for fusion in e.fromFusionToExon:
-            if fusion.at_exon.filter(exon__exact=exon_two):
+        for fcfusion in e.fromFusionToExon:
+            for fusion in fcfusion.fromFusionToFusionCatcher:
                 fusions.append(fusion)
+    #cell_line all, primo esone si, secondo esone si (011), tutte le fusioni che convolgono la coppia di esoni
+    elif c_line == "ALL" and exon_one!="ALL" and exon_two!="ALL":
+        e = Exon.nodes.get(exon = exon_one)
+        for fcfusion in e.fromFusionToExon:
+            if fcfusion.at_exon.filter(exon__exact=exon_two):
+                print(fcfusion.fromFusionToFusionCatcher.all()[0])
+                   # fusions.append(fusion)
     #cell_line si, primo esone no, secondo esone no, ANALOGO A SEARCH FOR CELL_LINE
-    elif c_line!="ALL" and exon_one=="" and exon_two=="":
+    elif c_line!="ALL" and exon_one=="ALL" and exon_two=="ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             fusions.append(fusion)     
     #cell_line si, primo esone si, secondo esone no 
-    elif c_line != "ALL" and exon_one != "" and exon_two == "":
+    elif c_line != "ALL" and exon_one != "ALL" and exon_two == "ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             if fusion.at_exon.filter(exon__exact=exon_one):
                 fusions.append(fusion)
     #cell_line si, primo esone si, secondo esone si 
-    elif c_line != "ALL" and exon_one!="" and exon_two != "":
+    elif c_line != "ALL" and exon_one!="ALL" and exon_two != "ALL":
         for fusion in CellLine.nodes.get(cell_line = c_line).happen:
             if fusion.at_exon.filter(exon__exact=exon_one) and fusion.at_exon.filter(exon__exact=exon_two):
                     fusions.append(fusion)
 
-    rows = build_rows(fusions)
+    rows = build_fc_rows(fusions)
     #print(rows)
 
     response['rows'] = {"header": header, "items": rows}
@@ -398,9 +391,23 @@ def build_rows(fusions):
         gene1 = myfusion.fromGeneToFusion.all()[0]
         gene2 = myfusion.with_gene.all()[0]
        
+        #recupero dati degli eventi di fusione
+        
+        es_fusions = []
+        
+        for esfusion in myfusion.with_eric_script:
+            es_fusions.append(esfusion)
+            
+        #fc_rows = build_fc_rows(fc_fusions)    
+            
+        
         rows.append([disease,acronym,cellLine,gene1.symbol,gene2.symbol])
-       
-    #print(rows)   
+        
+        #print(gene1.symbol+" "+gene2.symbol)
+        #print(fc_fusions)   
+        #print(es_fusions)
+        #print("\n\n\n")
+        
     return rows
 
 
@@ -408,22 +415,25 @@ def build_rows(fusions):
 def build_fc_rows(fusions):
     
     rows = []
-    # ora che ho solo le fusioni interessate recupero le informazioni e mi costruisco la riga
-    for myfusion in fusions:
-        # recupero cell line
-        cellLine = myfusion.fromCellLineToFusion.all()[0].cell_line
+    # ora che ho solo le fusioni FC interessate recupero le informazioni e mi costruisco la riga
+    fc_fusions = []
+    
+    for fus in fusions:
+        for fcfusion in fus.with_fc_script:
+            fc_fusions.append(fcfusion)
+    for myfusion in fc_fusions:
+        gene1 = myfusion.fromFusionToFusionCatcher.all()[0].fromGeneToFusion.all()[0]
+        gene2 = myfusion.fromFusionToFusionCatcher.all()[0].with_gene.all()[0]
         
-        #recupero dati dai geni
-        gene1 = myfusion.fromGeneToFusion.all()[0]
-        strand_1 = myfusion.fromGeneToFusion.relationship(gene1).strand
-        predicted_effect_1 = myfusion.fromGeneToFusion.relationship(gene1).predicted_effect
-        gene2 = myfusion.with_gene.all()[0]
-        strand_2 = myfusion.with_gene.relationship(gene2).strand
-        predicted_effect_2 = myfusion.with_gene.relationship(gene2).predicted_effect
-
+        strand_1 = myfusion.strand_1
+        predicted_effect_1 = myfusion.predicted_effect_1
+        strand_2 = myfusion.strand_2
+        predicted_effect_2 = myfusion.predicted_effect_2
+        
         #recupero cromosomi 
-        chromosome1 = myfusion.at_chromosome.match(fusion_partner__exact="5'end").all()[0]
-        chromosome2 = myfusion.at_chromosome.match(fusion_partner__exact="3'end").all()[0]
+        print(myfusion.fromFusionToFusionCatcher.all()[0].at_chromosome.all()[0]) #PROBLEMA
+        chromosome1 = myfusion.fromFusionToFusionCatcher.all()[0].at_chromosome.match(fusion_partner__exact="5end").all()[0]
+        chromosome2 = myfusion.fromFusionToFusionCatcher.all()[0].at_chromosome.match(fusion_partner__exact="3end").all()[0]
         fusion_point_1 = myfusion.fusion_point_1
         fusion_point_2 = myfusion.fusion_point_2
 
@@ -436,7 +446,6 @@ def build_fc_rows(fusions):
                 exon1 = exon
             if exon.in_gene.filter(symbol__exact=gene2.symbol):
                 exon2 = exon
-                
         #recupero trascritti e proteine
         transcript_couples = []
         proteins = []
@@ -452,9 +461,8 @@ def build_fc_rows(fusions):
             
         #costruisco la riga
         row = []
-        row.append(cellLine)
-        row.append(gene1.symbol+" - "+gene2.symbol)
-        row.append(gene1.gene_id+" - "+gene2.gene_id)
+        row.append(gene1.symbol)
+        row.append(gene2.symbol)
         if exon1 or exon2:
             row.append(exon1.exon+" - "+exon2.exon)
         else:
@@ -473,7 +481,7 @@ def build_fc_rows(fusions):
             row.append(predicted_effect_1)
         row.append(transcript_couples)
         row.append(proteins)   
-        #print(row)
+        print(row)
         rows.append(row)
     return rows
 
@@ -511,7 +519,7 @@ def old_generate_statistics(request):
         for node2,node_data2 in pairs.items():
             if node1 != node2:
                 if node_data1[0]=="Fusion":
-                    print("Fusion -no.") #fusion-cell_line è inutile e ci mette tempo, abolirei anche tutti quelli che iniziano con fusion
+                    print("Fusion -no.") #fusion-cell_line e' inutile e ci mette tempo, abolirei anche tutti quelli che iniziano con fusion
                 else:
                     print(node_data1[0],node_data2[0])
                     file =  open(node_data1[0]+'_'+node_data2[0]+'.csv','w')
@@ -620,7 +628,7 @@ def get_fc_header():
         "Predicted fused transcripts",
         "Predicted fused proteins"]
     
-    #prendo in input una stringa che è il nome della malattia, mi ricavo le linee cellulari corrispondenti e mi ricavo la tabella relativa
+    #prendo in input una stringa che e' il nome della malattia, mi ricavo le linee cellulari corrispondenti e mi ricavo la tabella relativa
 def get_cell_line_from_disease(disease):
     ccle_infos = get_ccle_infos()
     cls = []
