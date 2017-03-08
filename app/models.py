@@ -37,7 +37,7 @@ class Couple(StructuredNode):
     with_protein = RelationshipTo('Protein',"WITH_PROTEIN")
     #
     fromTranscriptToCouple = RelationshipFrom('Transcript',"IN_COUPLE", model=IN_COUPLE)
-    fromFCFusionToCouple = RelationshipFrom('FusionCatcher',"WITH_TRANS_COUPLE")
+    fromFusionToCouple = RelationshipFrom('FusionCatcher',"WITH_TRANS_COUPLE")
     
 class EricScript(StructuredNode):
     ericscript_id = IntegerProperty()
