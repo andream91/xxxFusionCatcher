@@ -74,6 +74,7 @@ class Fusion(StructuredNode):
     #
     with_fc_script = RelationshipTo('FusionCatcher',"WITH_FC_SCRIPT")
     with_eric_script =  RelationshipTo('EricScript',"WITH_ERIC_SCRIPT")
+    with_tophat_script = RelationshipTo('Tophat',"WITH_TOPHAT_SCRIPT")
     with_gene = RelationshipTo('Gene',"WITH")
     at_chromosome = RelationshipTo('Chromosome',"AT_CHROMOSOME")
     #
@@ -120,6 +121,17 @@ class Protein(StructuredNode):
     protein = StringProperty()
     #
     fromCoupleToProtein = RelationshipFrom('Couple',"WITH_PROTEIN")
+    
+class Tophat(StructuredNode):
+    tophat_id = IntegerProperty()
+    left_coord = StringProperty()
+    right_coord = StringProperty()
+    spanning_reads = StringProperty()
+    spanning_mate_pairs = StringProperty()
+    spanning_mate_pairs_end = StringProperty()
+    nonso = StringProperty()
+    #
+    fromFusionToTophat = RelationshipFrom('Fusion','WTIH_TOPHAT_SCRIPT')
     
 class Transcript(StructuredNode):
     transcript = StringProperty()

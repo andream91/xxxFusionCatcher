@@ -29,5 +29,8 @@ urlpatterns = [
     url(r'^disease/(.+)/', views.search_for_disease, name='search_for_disease'),
     url(r'^virus/(.+)/(.+)/', views.search_viruses, name='search_viruses'),
     url(r'^genstats/', views.generate_statistics, name='generate_statistics'),
+    url(r'^fusioncatcher/(.+)/', views.build_fc_table, name='build_fc_table'),
+    url(r'^ericscript/(.+)/', views.build_es_table, name='build_es_table'),
+    url(r'^tophat/(.+)/', views.build_th_table, name='build_th_table'),
 
 ]

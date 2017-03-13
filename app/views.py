@@ -373,22 +373,18 @@ def build_rows(fusions):
         gene1 = myfusion.fromGeneToFusion.all()[0]
         gene2 = myfusion.with_gene.all()[0]
        
-        #recupero dati degli eventi di fusione
-        
-        es_fusions = []
-        
-        for esfusion in myfusion.with_eric_script:
-            es_fusions.append(esfusion)
-            
-        #fc_rows = build_fc_rows(fc_fusions)    
-            
+      
+        #check
         fc_flag = "NO FC"
         es_flag = "NO ES"
+        th_flag = "NO TH"
         
         if(myfusion.with_fc_script):
-            fc_flag = "FC"
+            fc_flag = '{ type: "button", action: "dialog", url: fusioncatcher/'+str(myfusion.fusion_id)+' }'
         if(myfusion.with_eric_script):
-            es_flag = "ES"
+            es_flag = '{ type: "button", action: "dialog", url: ericscript/'+str(myfusion.fusion_id)+' }'
+        if(myfusion.with_eric_script):
+            th_flag = '{ type: "button", action: "dialog", url: tophat/'+str(myfusion.fusion_id)+' }'
         
         rows.append([disease,acronym,cellLine,gene1.symbol,gene2.symbol,fc_flag,es_flag])
         
@@ -400,6 +396,68 @@ def build_rows(fusions):
     return rows
 
 
+#BUILD_FC_TABLE E BUILD_ES_TABLE per costruire la tabella dei dettagli per ogni coppia. Quando premo il pulsante relativo all'algoritmo deve stamparmi tutte le fusioni relative
+
+def build_fc_table(request,fus_id):
+    
+    response = {}
+    header = get_fc_header()
+    
+    fusions = []
+    
+#     for fcFusion in Fusion.nodes.get(fusion_id = fus_id).with_fc_script:
+#         fusions.append(fcFusion)
+        
+    for fusion in Fusion.nodes.all():
+        if fusion.fusion_id == int(fus_id):
+            if fusion.with_fc_script:
+                fusions.append(fusion)
+        
+        
+    rows = build_fc_rows(fusions)
+    
+    response['rows'] = {"header": header, "items": rows}
+    return HttpResponse(json.dumps(response))
+
+def build_es_table(request,fus_id):
+    
+    response = {}
+    header = get_es_header()
+    
+    fusions = []
+    
+#     for esFusion in Fusion.nodes.get(fusion_id = fus_id).with_eric_script:
+#         fusions.append(esFusion)
+
+    for fusion in Fusion.nodes.all():
+        if fusion.fusion_id == int(fus_id):
+            if fusion.with_eric_script:
+                fusions.append(fusion)
+        
+    rows = build_es_rows(fusions)
+    
+    response['rows'] = {"header": header, "items": rows}
+    return HttpResponse(json.dumps(response))
+
+def build_th_table(request,fus_id):
+    
+    response = {}
+    header = get_tophat_header()
+    
+    fusions = []
+    
+#     for esFusion in Fusion.nodes.get(fusion_id = fus_id).with_eric_script:
+#         fusions.append(esFusion)
+
+    for fusion in Fusion.nodes.all():
+        if fusion.fusion_id == int(fus_id):
+            if fusion.with_tophat_script:
+                fusions.append(fusion)
+        
+    rows = build_tophat_rows(fusions)
+    
+    response['rows'] = {"header": header, "items": rows}
+    return HttpResponse(json.dumps(response))
 
 def build_fc_rows(fusions):
     
@@ -449,8 +507,7 @@ def build_fc_rows(fusions):
             
         #costruisco la riga
         row = []
-        row.append(gene1.symbol)
-        row.append(gene2.symbol)
+        row.append(gene1.symbol+" - "+gene2.symbol)
         if exon1 or exon2:
             row.append(exon1.exon+" - "+exon2.exon)
         else:
@@ -474,6 +531,103 @@ def build_fc_rows(fusions):
     return rows
 
 #SCRIVERE BUILD_ES_ROWS
+def build_es_rows(fusions):
+    rows = []
+    #recupero dati degli eventi di fusione
+        
+    es_fusions = []
+    
+    for fus in fusions:
+        for esfusion in fus.with_eric_script:
+            es_fusions.append(esfusion)
+    
+    for myfusion in es_fusions:
+        gene1 = myfusion.fromFusionToEricScript.all()[0].fromGeneToFusion.all()[0]
+        gene2 = myfusion.fromFusionToEricScript.all()[0].with_gene.all()[0]
+        
+        #recupero cromosomi 
+        chromosome1 = gene1.fromChromosomeToGene.all()[0]
+        chromosome2 = gene2.fromChromosomeToGene.all()[0]    
+        breakpoint1 = myfusion.breakpoint_1
+        breakpoint2 = myfusion.breakpoint_2
+        strand1 = myfusion.strand_1
+        strand2 = myfusion.strand_2
+        
+        crossing_reads = myfusion.crossing_reads
+        spanning_reads = myfusion.spanning_reads
+        mean_intersize = myfusion.mean_intersize
+        homology = myfusion.homology
+        fusion_type = myfusion.fusion_type
+        junction_sequence = myfusion.junction_sequence
+        gene_expr_1 = myfusion.gene_expr_1
+        gene_expr_2 = myfusion.gene_expr_2
+        gene_expr_fused = myfusion.gene_expr_fused
+        es = myfusion.es
+        gjs = myfusion.gjs
+        us = myfusion.us
+        eric_score = myfusion.eric_score
+        
+        #costruisco la riga
+        row = []
+        row.append(gene1.symbol+" - "+gene2.symbol)
+        row.append([chromosome1.chromosome+":"+str(breakpoint1)+":"+strand1, chromosome2.chromosome+":"+str(breakpoint2)+":"+strand2])
+        row.append(crossing_reads)
+        row.append(spanning_reads)
+        row.append(mean_intersize)
+        row.append(homology)
+        row.append(fusion_type)
+        row.append(junction_sequence)
+        row.append(gene_expr_1)
+        row.append(gene_expr_2)
+        row.append(gene_expr_fused)
+        row.append(es)
+        row.append(gjs)
+        row.append(us)
+        row.append(eric_score)
+        
+        rows.append(row)
+
+    return rows
+
+def build_tophat_rows(fusions):
+    rows = []
+    #recupero dati degli eventi di fusione
+        
+    th_fusions = []
+    
+    for fus in fusions:
+        for thfusion in fus.with_tophatscript:
+            th_fusions.append(thfusion)
+    
+    for myfusion in th_fusions:
+        gene1 = myfusion.fromFusionToTophatScript.all()[0].fromGeneToFusion.all()[0]
+        gene2 = myfusion.fromFusionToTophatScript.all()[0].with_gene.all()[0]
+        
+        #recupero cromosomi 
+        chromosome1 = gene1.fromChromosomeToGene.all()[0]
+        chromosome2 = gene2.fromChromosomeToGene.all()[0]    
+        left_coord = myfusion.left_coord
+        right_coord = myfusion.right_coord
+        
+        spanning_reads = myfusion.spanning_reads
+        spanning_mate_pairs = myfusion.spanning_mate_pairs
+        spanning_mate_pairs_end = myfusion.spanning_mate_pairs_end
+        nonso = myfusion.nonso
+        
+        #costruisco la riga
+        row = []
+        row.append(gene1.symbol+" - "+gene2.symbol)
+        row.append([chromosome1.chromosome+":"+str(left_coord), chromosome2.chromosome+":"+str(right_coord)])
+        row.append(spanning_reads)
+        row.append(spanning_mate_pairs)
+        row.append(spanning_mate_pairs_end)
+        row.append(nonso)
+
+        
+        rows.append(row)
+
+    return rows
+    
 
 def search_viruses(request,c_line,vir):
     response = {}
@@ -577,12 +731,11 @@ def get_header():
             "Gene 1",
             "Gene 2",
             "Fusion Catcher",
-            "Ericscript"]
+            "Ericscript",
+            "Tophat"]
     
 def get_fc_header():
-    return ["Cell line",
-        "Gene pair symbols",
-        "Gene pair EnsIDs",
+    return ["Gene pair symbols",
         "Exon pair",
         "Chromosome : fusion point : strand",
         "Description",
@@ -595,6 +748,31 @@ def get_fc_header():
         "Predicted effect",
         "Predicted fused transcripts",
         "Predicted fused proteins"]
+    
+def get_es_header():
+    return ["Gene pair symbols",
+        "Chromosome : breakpoint : strand",
+        "Crossing reads",
+        "Spanning reads",
+        "Mean intersize",
+        "Homology",
+        "Fusion type",
+        "Junction sequence",
+        "Gene expr 1",
+        "Gene expr 2",
+        "Gene expr fused",
+        "Es",
+        "Gjs",
+        "Us",
+        "Eric score"]
+    
+def get_tophat_header():
+    return ["Gene pair symbols",
+            "Chromosome : coordinate",
+            "Spanning reads",
+            "Spanning mate pairs",
+            "Spanning mate pairs where one end spans a fusion",
+            "Non so"]
     
     #prendo in input una stringa che e' il nome della malattia, mi ricavo le linee cellulari corrispondenti e mi ricavo la tabella relativa
 def get_cell_line_from_disease(disease):
