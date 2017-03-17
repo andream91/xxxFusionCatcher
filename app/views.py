@@ -612,7 +612,6 @@ def build_tophat_rows(fusions):
         spanning_reads = myfusion.spanning_reads
         spanning_mate_pairs = myfusion.spanning_mate_pairs
         spanning_mate_pairs_end = myfusion.spanning_mate_pairs_end
-        nonso = myfusion.nonso
         
         #costruisco la riga
         row = []
@@ -621,7 +620,6 @@ def build_tophat_rows(fusions):
         row.append(spanning_reads)
         row.append(spanning_mate_pairs)
         row.append(spanning_mate_pairs_end)
-        row.append(nonso)
 
         
         rows.append(row)
@@ -771,8 +769,7 @@ def get_tophat_header():
             "Chromosome : coordinate",
             "Spanning reads",
             "Spanning mate pairs",
-            "Spanning mate pairs where one end spans a fusion",
-            "Non so"]
+            "Spanning mate pairs where one end spans a fusion"]
     
     #prendo in input una stringa che e' il nome della malattia, mi ricavo le linee cellulari corrispondenti e mi ricavo la tabella relativa
 def get_cell_line_from_disease(disease):

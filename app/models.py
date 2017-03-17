@@ -129,7 +129,6 @@ class Tophat(StructuredNode):
     spanning_reads = StringProperty()
     spanning_mate_pairs = StringProperty()
     spanning_mate_pairs_end = StringProperty()
-    nonso = StringProperty()
     #
     fromFusionToTophat = RelationshipFrom('Fusion','WTIH_TOPHAT_SCRIPT')
     
