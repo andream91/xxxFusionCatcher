@@ -26,7 +26,47 @@ def search_for_cell_line(request,c_line):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_chromosome(request,c_line,chromos):
+def search_for_chromosome(request,chromos1,chromos2,c_line):
+    response = {}
+    header = get_header()
+    
+    # recupero fusioni nella linea cellulare
+    fusions = []
+    #TUTTE LE LINEE CELLULARI, UN CROMOSOMA 
+    if c_line == "ALL" and chromos1 != "ALL" and chromos2 == "ALL" :
+        c = Chromosome.nodes.get(chromosome = chromos1)
+        for fusion in c.fromFusiontoChromosome:
+            fusions.append(fusion)
+    #TUTTE LE LINEE CELLULARI, ENTRAMBI I CROMOSOMI
+    elif c_line == "ALL" and chromos1 != "ALL" and chromos2 != "ALL":
+        c1 = Chromosome.nodes.get(chromosome = chromos1)
+        c2 = Chromosome.nodes.get(chromosome = chromos2)
+        for fusion in c1.fromFusiontoChromosome:
+            if c2 in fusion.at_chromosome:
+                fusions.append(fusion)
+        for fusion in c2.fromFusiontoChromosome:
+            if c1 in fusion.at_chromosome:
+                fusions.append(fusion)
+    #LINEA CELLULARE SPECIFICATA, UN CROMOSOMA
+    elif c_line != "ALL" and chromos1 != "ALL" and chromos2 == "ALL":
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if fusion.at_chromosome.filter(chromosome__exact=chromos1):
+                fusions.append(fusion)
+    #LINEA CELLULARE SPECIFICATA, ENTRAMBI I CROMOSOMI SPECIFICATI
+    elif c_line != "ALL" and chromos1 != "ALL" and chromos2 != "ALL":
+        c1 = Chromosome.nodes.get(chromosome = chromos1)
+        c2 = Chromosome.nodes.get(chromosome = chromos2)
+        for fusion in CellLine.nodes.get(cell_line = c_line).happen:
+            if c1 in fusion.at_chromosome and c2 in fusion.at_chromosome:
+                fusions.append(fusion)
+    
+                    
+    rows = build_rows(fusions)
+    #print(rows)
+    response['rows'] = {"header": header, "items": rows}
+    return HttpResponse(json.dumps(response))
+        
+def OLD_search_for_chromosome(request,chromos,c_line):
     response = {}
     header = get_header()
     
@@ -52,7 +92,7 @@ def search_for_chromosome(request,c_line,chromos):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_gene(request,c_line,gene_one,gene_two):
+def search_for_gene(request,gene_one,gene_two,c_line):
     response = {}
     header = get_header()
     
@@ -148,7 +188,7 @@ def search_for_gene(request,c_line,gene_one,gene_two):
 
 
 
-def search_for_exon(request,c_line,exon_one,exon_two):
+def search_for_exon(request,exon_one,exon_two,c_line):
     response = {}
     header = get_fc_header()
     
@@ -190,7 +230,7 @@ def search_for_exon(request,c_line,exon_one,exon_two):
     response['rows'] = {"header": header, "items": rows}
     return HttpResponse(json.dumps(response))
 
-def search_for_transcript(request,c_line,transcript_one,transcript_two):
+def search_for_transcript(request,transcript_one,transcript_two,c_line):
     response = {}
     header = get_fc_header()
     

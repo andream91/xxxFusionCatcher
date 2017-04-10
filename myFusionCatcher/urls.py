@@ -19,8 +19,7 @@ from app import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    #url(r'^chromosomes/(.+)/(.+)/(.+)/(.+)/', views.search_for_chromosome, name='search_for_chromosome'),
-    url(r'^chromosomes/(.+)/(.+)/', views.search_for_chromosome, name='search_for_chromosome'),
+    url(r'^chromosomes/(.+)/(.+)/(.+)/', views.search_for_chromosome, name='search_for_chromosome'),
     url(r'^cell_line/(.+)/', views.search_for_cell_line, name='search_for_cell_line'),
     url(r'^gene/(.+)/(.+)/(.+)/', views.search_for_gene, name='search_for_gene'),
     url(r'^exon/(.+)/(.+)/(.+)/', views.search_for_exon, name='search_for_exon'),
